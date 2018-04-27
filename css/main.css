@@ -72,9 +72,9 @@ body.dragging section {
 
 .slider-navigation {
     position: fixed;
-    top: 5%;
+    top: 15%;
     right: 1vw;
-    height: 90%;
+    height: 75%;
     width: 4px;
     background: #222;
     display: -webkit-box;
