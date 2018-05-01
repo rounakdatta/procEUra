@@ -5,16 +5,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <link rel="shortcut icon" type="image/png" href="./img/nexttech-icon.png"/>
+  <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/nexttech-icon.png') }}">
   <title>Developers</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/mdb.min.css') }}" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.min.css') }}" rel="stylesheet">
 
 <style>
 
@@ -23,7 +23,7 @@ p.dashed {border-style: dashed;}
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 40%;
+    width: 75%;
     border-radius: 5px;
 }
 
@@ -91,7 +91,7 @@ tr:nth-child(even){background-color: #f2f2f2}
         <div class="container">
 
           <!-- Brand -->
-          <a class="navbar-brand" href="./index.html">
+          <a class="navbar-brand" href="{{ url_for('index') }}">
             <strong>Team Satoshi</strong>
           </a>
 
@@ -111,7 +111,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                 <a class="nav-link" href="https://en.wikipedia.org/wiki/Blockchain" target="_blank">Blockchain</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./developers.html">Developers</a>
+                <a class="nav-link" href="{{ url_for('developers') }}">Developers</a>
               </li>
             </ul>
 
@@ -133,12 +133,24 @@ tr:nth-child(even){background-color: #f2f2f2}
                   <i class="fa fa-github mr-2"></i>
                 </a>
               </li>
+              {% if session['logged_in'] %}
               <li class="nav-item">
-                  <a href="./login.html" class="nav-link border border-light rounded"
-                    target="_blank">
-                    <i class="fa fa-user mr-2"></i>Become a Member
+                  <a class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>{{user}}
                   </a>
                 </li>
+              {% else %}
+              <li class="nav-item">
+                  <a href="{{ url_for('login') }}" class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>Login
+                  </a>
+                </li>&nbsp;&nbsp;
+                <li class="nav-item">
+                  <a href="{{ url_for('register') }}" class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>Sign Up
+                  </a>
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -149,25 +161,79 @@ tr:nth-child(even){background-color: #f2f2f2}
   <main class="mt-5 pt-4">
     <div class="container">
 
-      <h3 class="my-5 h3 text-center">Topcoder BSIC 2018</h3>
-      <h5 class="my-5 h5 text-center">Developers</h5>
+      <h3 class="my-5 h3 text-center">Login</h3>
 
 <center>
 
 <div class="row">
 
   <!-- the right hand side elements-->
-  <div class="col-md-12">
+  <div class="col-md-6">
 
-  <ul class="list-group">
-  <li class="list-group-item">Arjun Bahuguna</li>
-  <li class="list-group-item">Krishna Jangid</li>
-  <li class="list-group-item">Tejasv Sharma</li>
-  <li class="list-group-item">Souradeep Das</li>
-  <li class="list-group-item">Rounak Datta</li>
-</ul>
+<div class="card">
+<div class="container">
+    <center>
+
+{% if session['dealer_logged_in'] %}
+<p>Login successful!</p>
+{% else %}
+<button type="button" class="btn btn-primary disabled">Dealer Login</button>
+<form action="/login" method=post>
+    <dl>
+        
+    <dt><label for="id">Login ID</label>
+    <dd><input id="id" name="dealername" type="text" value="">
+    
+    </dd>
+
+        
+    <dt><label for="pwd">Password</label>
+    <dd><input id="pwd" name="dealerpassword" type="password" value="">
+    
+    </dd>
+
+    </dl>
+    <p><input type=submit value=Login></p>
+</form>
+{% endif %}
+</center>
+</div>
+</div>
 
 </div>
+
+  <div class="col-md-6">
+
+<div class="card">
+<div class="container">
+    <center>
+
+{% if session['logged_in'] %}
+<p>Login successful!</p>
+{% else %}
+<button type="button" class="btn btn-primary disabled">Contractor Login</button>
+<form action="/login" method=post>
+    <dl>
+        
+    <dt><label for="id">Login ID</label>
+    <dd><input id="id" name="username" type="text" value="">
+    
+    </dd>
+
+        
+    <dt><label for="pwd">Password</label>
+    <dd><input id="pwd" name="password" type="password" value="">
+    
+    </dd>
+
+    </dl>
+    <p><input type=submit value=Login></p>
+</form>
+{% endif %}
+</center>
+</div>
+</div>
+
 
 </center>
 
@@ -237,13 +303,13 @@ tr:nth-child(even){background-color: #f2f2f2}
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization

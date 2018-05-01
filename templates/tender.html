@@ -5,16 +5,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <link rel="shortcut icon" type="image/png" href="./img/nexttech-icon.png"/>
+  <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/nexttech-icon.png') }}">
   <title>Tender Details</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/mdb.min.css') }}" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.min.css') }}" rel="stylesheet">
 
 
 <style>
@@ -52,7 +52,7 @@
         <div class="container">
 
           <!-- Brand -->
-          <a class="navbar-brand" href="./index.html">
+          <a class="navbar-brand" href="{{ url_for('index') }}">
             <strong>Team Satoshi</strong>
           </a>
 
@@ -72,7 +72,7 @@
                 <a class="nav-link" href="https://en.wikipedia.org/wiki/Blockchain" target="_blank">Blockchain</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./developers.html">Developers</a>
+                <a class="nav-link" href="{{ url_for('developers') }}">Developers</a>
               </li>
             </ul>
 
@@ -94,12 +94,24 @@
                   <i class="fa fa-github mr-2"></i>
                 </a>
               </li>
+              {% if session['logged_in'] %}
               <li class="nav-item">
-                  <a href="./login.html" class="nav-link border border-light rounded"
-                    target="_blank">
-                    <i class="fa fa-user mr-2"></i>Become a Member
+                  <a class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>{{user}}
                   </a>
                 </li>
+              {% else %}
+              <li class="nav-item">
+                  <a href="{{ url_for('login') }}" class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>Login
+                  </a>
+                </li>&nbsp;&nbsp;
+                <li class="nav-item">
+                  <a href="{{ url_for('register') }}" class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>Sign Up
+                  </a>
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -308,8 +320,35 @@
 
         </div>
         <!--Grid column-->
+{% if session['bid_submitted'] %}
+<div class="col-md-12">
+<center><button type="submit" class="btn btn-primary disabled">{{status}}</button></center>
+</div>
+{% else %}
+  <div class="col-md-12">
 
-      </div>
+<div class="card">
+<div class="container">
+    <center>
+        <form action="/tender" method=post>
+    <dl>
+        
+    <dt><label for="id">Bid Amount</label>
+    <dd><input id="id" name="bidamount" type="text" value="">
+    
+    </dd>
+
+    </dl>
+
+    <input type="checkbox" name="tnc" value="agree">&nbsp;I hereby agree to the T&C<br>
+    <p><button type="submit" class="btn btn-primary">Make Bid</button></p>
+</form>
+</center>
+</div>
+</div>
+
+</div>
+{% endif %}
       <!--Grid row-->
 
     </div>
@@ -378,13 +417,13 @@
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
-  <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization

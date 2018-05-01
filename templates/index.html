@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <link rel="shortcut icon" type="image/png" href="./img/nexttech-icon.png"/>
+  <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/nexttech-icon.png') }}">
   <title>Team Satoshi</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
@@ -13,7 +13,7 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
   <!-- main style -->
-  <link rel="stylesheet" type="text/css" href="css/main.css?v=2017.11.11_v2">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 
   <!-- Global Site Tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-107490980-1"></script>
@@ -29,11 +29,11 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- Material Design Bootstrap -->
-  <link href="css/mdb.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/mdb.min.css') }}" rel="stylesheet">
   <!-- Your custom styles (optional) -->
-  <link href="css/style.min.css" rel="stylesheet">
+  <link href="{{ url_for('static', filename='css/style.min.css') }}" rel="stylesheet">
   <style type="text/css">
     html,
     body,
@@ -102,7 +102,7 @@
         <div class="container">
 
           <!-- Brand -->
-          <a class="navbar-brand" href="./index.html">
+          <a class="navbar-brand" href="{{ url_for('index') }}">
             <strong>Team Satoshi</strong>
           </a>
 
@@ -122,7 +122,7 @@
                 <a class="nav-link" href="https://en.wikipedia.org/wiki/Blockchain" target="_blank">Blockchain</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="./developers.html">Developers</a>
+                <a class="nav-link" href="{{ url_for('developers') }}">Developers</a>
               </li>
             </ul>
 
@@ -144,11 +144,24 @@
                   <i class="fa fa-github mr-2"></i>
                 </a>
               </li>
+              {% if session['logged_in'] %}
               <li class="nav-item">
-                  <a href="./login.html" class="nav-link border border-light rounded">
-                    <i class="fa fa-user mr-2"></i>Become a Member
+                  <a class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>{{user}}
                   </a>
                 </li>
+              {% else %}
+              <li class="nav-item">
+                  <a href="{{ url_for('login') }}" class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>Login
+                  </a>
+                </li>&nbsp;&nbsp;
+                <li class="nav-item">
+                  <a href="{{ url_for('register') }}" class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>Sign Up
+                  </a>
+                </li>
+              {% endif %}
             </ul>
           </div>
         </div>
@@ -186,10 +199,10 @@
                   The Ethereum-powered procurement platform is built to <strong>keep the middlemen out</strong>, to make sure <strong>the best bidder finds the best dealer</strong>, ensure that <strong>public data is truly public</strong> and <strong>common citizen's money isn't fiddled with</strong>.
                 </p>
 
-                <a href="./portal.html" class="btn btn-outline-white">e-Procurement Portal
+                <a href="{{ url_for('portal') }}" class="btn btn-outline-white">e-Procurement Portal
                   <i class="fas fa-dollar-sign"></i>
                 </a>
-                <a href="./whitepaper.html" class="btn btn-outline-white">Whitepaper
+                <a href="{{ url_for('whitepaper') }}" class="btn btn-outline-white">Whitepaper
                   <i class="fa fa-download ml-2"></i>
                 </a>
                 
@@ -204,7 +217,7 @@
               <div class="col-md-6 col-xl-5 mb-4">
 
               	<!--https://mdbootstrap.com/img/Mockups/Transparent/Small/admin-new.png-->
-                <img src="./img/surface.png" alt="" class="img-fluid">
+                <img src="{{ url_for('static', filename='./img/surface.png') }}" alt="" class="img-fluid">
 
               </div>
               <!--Grid column-->
@@ -283,7 +296,7 @@
 
 </script>
 
-            <img src="img/problem.png" alt="problems" height=auto width="600">
+            <img src="{{ url_for('static', filename='img/problem.png') }}" alt="problems" height=auto width="600">
             <!-- Main heading -->
 
             <hr>
@@ -310,7 +323,7 @@
             <h3 class="h3 mb-3">e-Procurement systems are better</h3>
             <p>But only when the database is transparent and immutable.</p>
 
-            <img src="img/problem2.png" alt="problems">
+            <img src="{{ url_for('static', filename='img/problem2.png') }}" alt="problems">
 
           </div>
 
@@ -466,7 +479,7 @@
 
           <!--Second column-->
           <div class="col-md-4 flex-center">
-            <img src="./img/confused.png" alt="MDB Magazine Template displayed on iPhone" class="z-depth-0 img-fluid">
+            <img src="{{ url_for('static', filename='./img/confused.png') }}" alt="MDB Magazine Template displayed on iPhone" class="z-depth-0 img-fluid">
           </div>
           <!--/Second column-->
 
@@ -665,8 +678,8 @@
                 <i class="fa fa-file-code-o fa-2x mb-1 indigo-text" aria-hidden="true"></i>
               </div>
               <div class="col-10 mb-2">
-                <h5 class="feature-title font-bold mb-1">Unnamed</h5>
-                <p class="grey-text mt-2">blah blah feature</p>
+                <h5 class="feature-title font-bold mb-1">Feature</h5>
+                <p class="grey-text mt-2">This is another feature</p>
               </div>
             </div>
             <!--/Grid row-->
@@ -799,25 +812,25 @@
   <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
   <!-- Initializations -->
   <script type="text/javascript">
     // Animations initialization
     new WOW().init();
   </script>
   
-  <script src="js/main.js"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
   
 
-		<div class="parallax-window" data-parallax="scroll" data-image-src="img/test-oct-6.png"></div>
+		<div class="parallax-window" data-parallax="scroll" data-image-src="{{ url_for('static', filename='img/test-oct-6.png') }}"></div>
 		<!-- =================== script =================== -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
-		<script src="lib/parallax.js-1.4.2/parallax.min.js"></script>
+		<script src="{{ url_for('static', filename='lib/parallax.js-1.4.2/parallax.min.js') }}"></script>
 		<!-- Latest compiled and minified JavaScript -->
 
 		<!-- particles js -->
@@ -828,7 +841,7 @@
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
 		<!-- main js file -->
-		<script src="js/main.js"></script>
+		<script src="{{ url_for('static', filename='js/main.js') }}') }}"></script>
 
 		<script>
 		$(document).ready(function() {
