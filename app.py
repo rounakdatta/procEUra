@@ -36,7 +36,7 @@ def login():
 		if request.form['dealerusername'] in creds and request.form['dealerpassword'] == calcpwd :
 			session['dealer_logged_in'] = True
 			session['user'] = request.form['dealerusername']
-			render_template('index.html', user=session['user'])
+			return render_template('index.html', user=session['user'])
 		else:
 			flash('wrong password!')
 
@@ -50,7 +50,7 @@ def login():
 		if request.form['contractorusername'] in creds and request.form['contractorpassword'] == calcpwd :
 			session['logged_in'] = True
 			session['user'] = request.form['contractorusername']
-			render_template('index.html', user=session['user'])
+			return render_template('index.html', user=session['user'])
 		else:
 			flash('wrong password!')
 
@@ -71,7 +71,7 @@ def register():
 			with open("./users/contractors/contractors.txt", "a") as bidder:
 				bidder.write(request.form['contractorusername'] + "-" + request.form['contractorpassword'] + "\n")
 
-			render_template('index.html')
+			return render_template('index.html')
 	else:
 		flash('wrong password!')
 
@@ -79,7 +79,7 @@ def register():
 			with open("./users/dealers/dealers.txt", "a") as bidder:
 				bidder.write(request.form['dealerusername'] + "-" + request.form['dealerpassword'] + "\n")
 
-			render_template('index.html')
+			return render_template('index.html')
 	else:
 		flash('wrong password!')	
 
@@ -88,16 +88,17 @@ def register():
 @app.route('/tender', methods=['GET', 'POST'])
 def tender():
 
-	f = open("./tenders/t1/bids.txt", "r")
-	bids = f.read()
-	bidsearch = re.search(session['user'], bids)
-	if bidsearch is not None:
-		start = bidsearch.start() + len(session['user']) + 1 
-		calcbid = bids[start:start + 5]
-		session['bid_submitted'] = True
-	else:
-		calcbid = str(0)
-		session['bid_submitted'] = False
+	if session.get('user'):
+		f = open("./tenders/t1/bids.txt", "r")
+		bids = f.read()
+		bidsearch = re.search(session['user'], bids)
+		if bidsearch is not None:
+			start = bidsearch.start() + len(session['user']) + 1 
+			calcbid = bids[start:start + 5]
+			session['bid_submitted'] = True
+		else:
+			calcbid = str(0)
+			session['bid_submitted'] = False
 
 	if session.get('dealer_logged_in'):
 		bids = bids.replace('\n', ' ')
@@ -110,6 +111,15 @@ def tender():
 			bidder.write(session['user'] + "-" + request.form['bidamount'] + "\n")
 
 		session['bid_submitted'] = True
+		return render_template('portal.html', user=session['user'])
+
+	if request.method == 'POST' and 'closebid' in request.form:
+
+		with open("./tenders/t1/bids.txt", "w") as bidder:
+			bidder.write("WINNER - " + request.form['choice'])
+
+		session['bid_complete'] = True
+		session['bid_winner'] = request.form['choice']
 		return render_template('portal.html', user=session['user'])
 
 	if session.get('logged_in') or session.get('dealer_logged_in'):

@@ -321,12 +321,17 @@
         </div>
         <!--Grid column-->
 
-{% if session['dealer_logged_in'] %}
+{% if session['bid_complete'] %}
+
+{% endif %}
+
+
+{% if session['dealer_logged_in'] and not session['bid_complete'] %}
 <div class="col-md-12">
 
   <ul class="list-group">
 {% for bid in all_my_bids %}
-  <li class="list-group-item">{{bid}}</li>
+  <li class="list-group-item"><p><button type="submit" name="closebid" choice={{bid}} class="btn btn-primary disabled"><strong>{{bid}}</strong> - Close Bidding</button></p></li>
 {% endfor %}
 </ul>
 
@@ -334,12 +339,12 @@
 {% endif %}
 
 
-{% if session['bid_submitted'] %}
+{% if session['bid_submitted'] and not session['dealer_logged_in'] and not session['bid_complete'] %}
 <div class="col-md-12">
 <center><button type="submit" class="btn btn-primary disabled">{{status}}<br>{{amount}}</button></center>
 </div>
 {% else %}
-{% if not session['dealer_logged_in'] %}
+{% if not session['dealer_logged_in'] and session['logged_in'] and not session['bid_complete'] %}
 <div class="col-md-12">
 
 <div class="card">
@@ -355,8 +360,8 @@
 
     </dl>
 
-    <input type="checkbox" name="tnc" value="agree">&nbsp;I hereby agree to the T&C<br>
-    <p><button type="submit" class="btn btn-primary">Make Bid</button></p>
+    <input type="checkbox" name="checkbox" value="agree"  >&nbsp;I hereby agree to the T&C<br>
+    <p><button type="submit" class="btn btn-primary" onclick="if(!this.form.checkbox.checked){alert('You must agree to the terms first.');return false}" >Make Bid</button></p>
 </form>
 </center>
 </div>
