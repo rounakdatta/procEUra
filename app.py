@@ -88,7 +88,7 @@ def tender():
 	if session.get('logged_in'):
 
 		if session['bid_submitted'] == True:
-			return render_template('tender.html', user=session['user'], status=calcbid + " BID SUBMITTED")
+			return render_template('tender.html', user=session['user'], status="BID SUBMITTED", amount=calcbid)
 		else:
 			return render_template('tender.html', user=session['user'])
 	else:
