@@ -5,37 +5,51 @@ app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-	if session.get('logged_in'):
+	if session.get('logged_in') or session.get('dealer_logged_in'):
 		return render_template('index.html', user=session['user'])
 	else:
 		return render_template('index.html')
 
 @app.route('/portal', methods=['GET', 'POST'])
 def portal():
-	if session.get('logged_in'):
+	if session.get('logged_in') or session.get('dealer_logged_in'):
 		return render_template('portal.html', user=session['user'])
 	else:
 		return render_template('portal.html')
 
 @app.route('/whitepaper', methods=['GET', 'POST'])
 def whitepaper():
-	if session.get('logged_in'):
+	if session.get('logged_in') or session.get('dealer_logged_in'):
 		return render_template('whitepaper.html', user=session['user'])
 	else:
 		return render_template('whitepaper.html')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-	if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+	if request.method == 'POST' and 'dealerusername' in request.form and 'dealerpassword' in request.form:
+		f = open("./users/dealers/dealers.txt", "r")
+		creds = f.read()
+		f.close()
+
+		start = (re.search(request.form['dealerusername'], creds).start() + len(request.form['dealerusername'])) + 1 
+		calcpwd = creds[start:start + len(request.form['dealerpassword'])]
+		if request.form['dealerusername'] in creds and request.form['dealerpassword'] == calcpwd :
+			session['dealer_logged_in'] = True
+			session['user'] = request.form['dealerusername']
+			render_template('index.html', user=session['user'])
+		else:
+			flash('wrong password!')
+
+	if request.method == 'POST' and 'contractorusername' in request.form and 'contractorpassword' in request.form:
 		f = open("./users/contractors/contractors.txt", "r")
 		creds = f.read()
 		f.close()
 
-		start = (re.search(request.form['username'], creds).start() + len(request.form['username'])) + 1 
-		calcpwd = creds[start:start + len(request.form['password'])]
-		if request.form['username'] in creds and request.form['password'] == calcpwd :
+		start = (re.search(request.form['contractorusername'], creds).start() + len(request.form['contractorusername'])) + 1 
+		calcpwd = creds[start:start + len(request.form['contractorpassword'])]
+		if request.form['contractorusername'] in creds and request.form['contractorpassword'] == calcpwd :
 			session['logged_in'] = True
-			session['user'] = request.form['username']
+			session['user'] = request.form['contractorusername']
 			render_template('index.html', user=session['user'])
 		else:
 			flash('wrong password!')
@@ -45,16 +59,25 @@ def login():
 @app.route("/logout")
 def logout():
 	session['logged_in'] = False
+	session['dealer_logged_in'] = False
 	return index()
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-	if session.get('logged_in'):
+	if session.get('logged_in') or session.get('dealer_logged_in'):
 		return render_template('register.html', user=session['user'])
 
-	if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
+	if request.method == 'POST' and 'contractorusername' in request.form and 'contractorpassword' in request.form:
 			with open("./users/contractors/contractors.txt", "a") as bidder:
-				bidder.write(request.form['username'] + "-" + request.form['password'] + "\n")
+				bidder.write(request.form['contractorusername'] + "-" + request.form['contractorpassword'] + "\n")
+
+			render_template('index.html')
+	else:
+		flash('wrong password!')
+
+	if request.method == 'POST' and 'dealerusername' in request.form and 'dealerpassword' in request.form:
+			with open("./users/dealers/dealers.txt", "a") as bidder:
+				bidder.write(request.form['dealerusername'] + "-" + request.form['dealerpassword'] + "\n")
 
 			render_template('index.html')
 	else:
@@ -76,16 +99,20 @@ def tender():
 		calcbid = str(0)
 		session['bid_submitted'] = False
 
+	if session.get('dealer_logged_in'):
+		bids = bids.replace('\n', ' ')
+		print(bids)
+		return render_template('tender.html', user=session['user'], all_my_bids=bids.split())
+
 	if request.method == 'POST' and 'bidamount' in request.form:
 
 		with open("./tenders/t1/bids.txt", "a") as bidder:
 			bidder.write(session['user'] + "-" + request.form['bidamount'] + "\n")
-		print("hello")
 
 		session['bid_submitted'] = True
 		return render_template('portal.html', user=session['user'])
 
-	if session.get('logged_in'):
+	if session.get('logged_in') or session.get('dealer_logged_in'):
 
 		if session['bid_submitted'] == True:
 			return render_template('tender.html', user=session['user'], status="BID SUBMITTED", amount=calcbid)
@@ -96,7 +123,7 @@ def tender():
 
 @app.route('/developers', methods=['GET', 'POST'])
 def developers():
-	if session.get('logged_in'):
+	if session.get('logged_in') or session.get('dealer_logged_in'):
 		return render_template('tender.html', user=session['user'])
 	else:
 		return render_template('tender.html')

@@ -144,7 +144,7 @@
                   <i class="fa fa-github mr-2"></i>
                 </a>
               </li>
-              {% if session['logged_in'] %}
+              {% if session['logged_in'] or session['dealer_logged_in'] %}
               <li class="nav-item">
                   <a class="nav-link border border-light rounded">
                     <i class="fa fa-user mr-2"></i>{{user}}

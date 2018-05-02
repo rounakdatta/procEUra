@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/nexttech-icon.png') }}">
-  <title>Developers</title>
+  <title>Register</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
@@ -133,7 +133,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                   <i class="fa fa-github mr-2"></i>
                 </a>
               </li>
-              {% if session['logged_in'] %}
+              {% if session['logged_in'] or session['dealer_logged_in'] %}
               <li class="nav-item">
                   <a class="nav-link border border-light rounded">
                     <i class="fa fa-user mr-2"></i>{{user}}
@@ -161,14 +161,14 @@ tr:nth-child(even){background-color: #f2f2f2}
   <main class="mt-5 pt-4">
     <div class="container">
 
-      <h3 class="my-5 h3 text-center">Contractor Register</h3>
+      <h3 class="my-5 h3 text-center">Register</h3>
 
 <center>
 
 <div class="row">
 
-  <!-- the right hand side elements-->
-  <div class="col-md-6">
+
+<div class="col-md-6">
 
 <div class="card">
 <div class="container">
@@ -177,18 +177,18 @@ tr:nth-child(even){background-color: #f2f2f2}
 {% if session['logged_in'] %}
 <p>Registration successful!</p>
 {% else %}
-<button type="button" class="btn btn-primary disabled">Register</button>
+<button type="button" class="btn btn-primary disabled">Dealer Register</button>
 <form action="/register" method=post>
     <dl>
         
     <dt><label for="id">User ID</label>
-    <dd><input id="id" name="username" type="text" value="">
+    <dd><input id="id" name="dealerusername" type="text" value="">
     
     </dd>
 
         
     <dt><label for="pwd">Password</label>
-    <dd><input id="pwd" name="password" type="password" value="">
+    <dd><input id="pwd" name="dealerpassword" type="password" value="">
     
     </dd>
 
@@ -201,6 +201,42 @@ tr:nth-child(even){background-color: #f2f2f2}
 </div>
 
 </div>
+
+  <!-- the right hand side elements-->
+  <div class="col-md-6">
+
+<div class="card">
+<div class="container">
+    <center>
+
+{% if session['logged_in'] %}
+<p>Registration successful!</p>
+{% else %}
+<button type="button" class="btn btn-primary disabled">Contractor Register</button>
+<form action="/register" method=post>
+    <dl>
+        
+    <dt><label for="id">User ID</label>
+    <dd><input id="id" name="contractorusername" type="text" value="">
+    
+    </dd>
+
+        
+    <dt><label for="pwd">Password</label>
+    <dd><input id="pwd" name="contractorpassword" type="password" value="">
+    
+    </dd>
+
+    </dl>
+    <p><input type=submit value=Register></p>
+</form>
+{% endif %}
+</center>
+</div>
+</div>
+
+</div>
+
 
 </center>
 

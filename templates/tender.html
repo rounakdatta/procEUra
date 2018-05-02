@@ -94,7 +94,7 @@
                   <i class="fa fa-github mr-2"></i>
                 </a>
               </li>
-              {% if session['logged_in'] %}
+              {% if session['logged_in'] or session['dealer_logged_in'] %}
               <li class="nav-item">
                   <a class="nav-link border border-light rounded">
                     <i class="fa fa-user mr-2"></i>{{user}}
@@ -320,12 +320,27 @@
 
         </div>
         <!--Grid column-->
+
+{% if session['dealer_logged_in'] %}
+<div class="col-md-12">
+
+  <ul class="list-group">
+{% for bid in all_my_bids %}
+  <li class="list-group-item">{{bid}}</li>
+{% endfor %}
+</ul>
+
+</div>
+{% endif %}
+
+
 {% if session['bid_submitted'] %}
 <div class="col-md-12">
 <center><button type="submit" class="btn btn-primary disabled">{{status}}<br>{{amount}}</button></center>
 </div>
 {% else %}
-  <div class="col-md-12">
+{% if not session['dealer_logged_in'] %}
+<div class="col-md-12">
 
 <div class="card">
 <div class="container">
@@ -348,6 +363,7 @@
 </div>
 
 </div>
+{% endif %}
 {% endif %}
       <!--Grid row-->
 

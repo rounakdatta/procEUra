@@ -133,7 +133,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                   <i class="fa fa-github mr-2"></i>
                 </a>
               </li>
-              {% if session['logged_in'] %}
+              {% if session['logged_in'] or session['dealer_logged_in'] %}
               <li class="nav-item">
                   <a class="nav-link border border-light rounded">
                     <i class="fa fa-user mr-2"></i>{{user}}
@@ -182,7 +182,7 @@ tr:nth-child(even){background-color: #f2f2f2}
     <dl>
         
     <dt><label for="id">Login ID</label>
-    <dd><input id="id" name="dealername" type="text" value="">
+    <dd><input id="id" name="dealerusername" type="text" value="">
     
     </dd>
 
@@ -216,13 +216,13 @@ tr:nth-child(even){background-color: #f2f2f2}
     <dl>
         
     <dt><label for="id">Login ID</label>
-    <dd><input id="id" name="username" type="text" value="">
+    <dd><input id="id" name="contractorusername" type="text" value="">
     
     </dd>
 
         
     <dt><label for="pwd">Password</label>
-    <dd><input id="pwd" name="password" type="password" value="">
+    <dd><input id="pwd" name="contractorpassword" type="password" value="">
     
     </dd>
 
