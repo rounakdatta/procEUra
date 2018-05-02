@@ -149,6 +149,11 @@
                   <a class="nav-link border border-light rounded">
                     <i class="fa fa-user mr-2"></i>{{user}}
                   </a>
+                </li>&nbsp;&nbsp;
+                <li class="nav-item">
+                  <a href="{{ url_for('logout') }}" class="nav-link border border-light rounded">
+                    <i class="fas fa-sign-out-alt"></i>Log Out
+                  </a>
                 </li>
               {% else %}
               <li class="nav-item">
