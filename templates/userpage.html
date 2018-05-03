@@ -12,6 +12,58 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Font Awesome Icon Library -->
 
+<style type="text/css">
+  
+body{
+  padding-top:50px;
+  background: #555;
+}
+.flip {
+  -webkit-perspective: 800;   
+          perspective: 800;
+        position: relative;
+        text-align: center;
+}
+.flip .card.flipped {
+  -webkit-transform: rotatey(-180deg);
+          transform: rotatey(-180deg);
+}
+.flip .card {
+    width: 150px;
+    height: 150px;
+    -webkit-transform-style: preserve-3d;
+    -webkit-transition: 0.5s;
+    transform-style: preserve-3d;
+    transition: 0.5s;
+    background-color: #fff;
+   
+}
+.flip .card .face {
+  -webkit-backface-visibility: hidden ;
+    backface-visibility: hidden ;
+   z-index: 2;
+}
+.flip .card .front {
+   position: absolute;
+   width: 150px;
+   z-index: 1;
+}
+.flip .card .img {
+   position: left;
+   width: 140px;
+   height: 140px;
+   z-index: 1;
+   border: 2px solid #000;
+}
+.flip .card .back {
+  padding-top: 10%;
+  -webkit-transform: rotatey(-180deg);
+          transform: rotatey(-180deg);
+}
+  .inner{margin:0px !important;}
+
+</style>
+
 
   <style>
   .containerach {
@@ -410,14 +462,100 @@ tr:nth-child(even){background-color: #f2f2f2}
 <div class="row">
 <div class="col-md-6">
 
-  <!-- the right hand side elements-->
-
-
 <div id="chartContainer" style="height: 360px; width: 100%;"></div>
 
 </div>
 </div>
-<br>
+
+<div class="row">
+<div class="col-md-3" >
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="col-sm-3" style="float:right;">
+      <div class="flip">
+        <div class="card"> 
+          <div class="face front"> 
+            <div class="inner">   
+              <img src="https://png.icons8.com/color/140/trophy.png">
+            </div>
+          </div> 
+          <div class="face back"> 
+            <div class="inner text-center"> 
+              <b>Best in Class Award</b>
+              from Govt of India for XYZ Project
+            </div>
+          </div>
+        </div>   
+      </div>
+    </div>
+  </div>
+
+<div class="col-md-3" >
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="col-sm-3" style="float:right;">
+      <div class="flip">
+        <div class="card"> 
+          <div class="face front"> 
+            <div class="inner">   
+              <img src="https://png.icons8.com/color/140/trophy.png">
+            </div>
+          </div> 
+          <div class="face back"> 
+            <div class="inner text-center"> 
+              <b>Best in Class Award</b>
+              from Govt of India for XYZ Project
+            </div>
+          </div>
+        </div>   
+      </div>
+    </div>
+  </div>
+
+<div class="col-md-3" >
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="col-sm-3" style="float:right;">
+      <div class="flip">
+        <div class="card"> 
+          <div class="face front"> 
+            <div class="inner">   
+              <img src="https://png.icons8.com/color/140/trophy.png">
+            </div>
+          </div> 
+          <div class="face back"> 
+            <div class="inner text-center"> 
+              <b>Best in Class Award</b>
+              from Govt of India for XYZ Project
+            </div>
+          </div>
+        </div>   
+      </div>
+    </div>
+  </div>
+
+<div class="col-md-3" >
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div class="col-sm-3" style="float:right;">
+      <div class="flip">
+        <div class="card"> 
+          <div class="face front"> 
+            <div class="inner">   
+              <img src="https://png.icons8.com/color/140/trophy.png">
+            </div>
+          </div> 
+          <div class="face back"> 
+            <div class="inner text-center"> 
+              <b>Best in Class Award</b>
+              from Govt of India for XYZ Project
+            </div>
+          </div>
+        </div>   
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</div>
+<br><br><br>
 
 
     </div>
@@ -486,6 +624,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 
   <!-- SCRIPTS -->
   <!-- JQuery -->
+
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
@@ -494,6 +633,7 @@ tr:nth-child(even){background-color: #f2f2f2}
   <!-- MDB core JavaScript -->
   <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
   <script type="text/javascript" src="{{ url_for('static', filename='js/mycharts.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/flipping.js') }}"></script>
   <script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <!-- Initializations -->
   <script type="text/javascript">
