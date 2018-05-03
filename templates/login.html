@@ -135,7 +135,7 @@ tr:nth-child(even){background-color: #f2f2f2}
               </li>
               {% if session['logged_in'] or session['dealer_logged_in'] %}
               <li class="nav-item">
-                  <a class="nav-link border border-light rounded">
+                  <a href="{{ url_for('userpage') }}" class="nav-link border border-light rounded">
                     <i class="fa fa-user mr-2"></i>{{user}}
                   </a>
                 </li>
