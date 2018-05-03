@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script>
+window.onload = function () {
+
+//Better to construct options first and then pass it as a parameter
+var options = {
+	theme: "light2", //"light1", "light2", "dark1", "dark2"
+	animationEnabled: true,
+	title:{
+		text: "Income Statement, 2016"
+	},
+	axisX:{
+		labelFontSize: 12,
+		labelMaxWidth: 75
+	},
+	axisY: {
+		prefix: "$"
+	},	
+	data: [{
+		type: "waterfall",
+		yValueFormatString: "$#,##0",
+		risingColor: "#50cdc8",
+		fallingColor: "#ff6969",
+		lineColor: "#222222",
+		dataPoints: [
+			{ label: "Net Revenue", y: 280631 },
+			{ label: "Inventory", y: -115000 },
+			{ label: "Merchandise", y: -8900 },
+			{ label: "Other Sales Cost", y: -28990 },
+			{ label: "Gross Income", isIntermediateSum: true, color: "#55646e" },
+			{ label: "Staff", y: -24500 },
+			{ label: "Marketing", y: -5000 },
+			{ label: "Other Facilities", y: -35100 },
+			{ label: "Operating Income", isCumulativeSum: true, color: "#55646e" },
+			{ label: "Taxes", y: -11000 },
+			{ label: "Net Income", isCumulativeSum: true}
+		]
+	}]
+};
+
+$("#chartContainer").CanvasJSChart(options);
+}
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
+</body>
+</html>

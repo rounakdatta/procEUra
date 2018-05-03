@@ -13,7 +13,7 @@ def index():
 @app.route('/userpage', methods=['GET', 'POST'])
 def userpage():
 	if session.get('logged_in'):
-		return render_template('./single-contractor/userpage.html', username=session['user'])
+		return render_template('userpage.html', username=session['user'])
 	else:
 		return render_template('index.html')
 
