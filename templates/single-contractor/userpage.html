@@ -6,9 +6,100 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/nexttech-icon.png') }}">
-  <title>Login</title>
+  <title>{{username}}'s Stats</title>
   <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Font Awesome Icon Library -->
+
+  <style>
+  .containerach {
+      padding: 80px 120px;
+  }
+  .person {
+      border: 10px solid transparent;
+      margin-bottom: 25px;
+      width: 80%;
+      height: 80%;
+      opacity: 0.7;
+  }
+  .person:hover {
+      border-color: #f1f1f1;
+  }
+  </style>
+</head>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial;
+}
+
+.heading {
+    font-size: 25px;
+    margin-right: 25px;
+}
+
+.fa {
+    font-size: 25px;
+}
+
+.checked {
+    color: orange;
+}
+
+/* Three column layout */
+.side {
+    float: left;
+    width: 15%;
+    margin-top:10px;
+}
+
+.middle {
+    margin-top:10px;
+    float: left;
+    width: 70%;
+}
+
+/* Place text to the right */
+.right {
+    text-align: right;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The bar container */
+.bar-container {
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    color: white;
+}
+
+/* Individual bars */
+.bar-5 {width: 60%; height: 18px; background-color: #4CAF50;}
+.bar-4 {width: 30%; height: 18px; background-color: #2196F3;}
+.bar-3 {width: 10%; height: 18px; background-color: #00bcd4;}
+.bar-2 {width: 4%; height: 18px; background-color: #ff9800;}
+.bar-1 {width: 15%; height: 18px; background-color: #f44336;}
+
+/* Responsive layout - make the columns stack on top of each other instead of next to each other */
+@media (max-width: 400px) {
+    .side, .middle {
+        width: 100%;
+    }
+    .right {
+        display: none;
+    }
+}
+</style>
   <!-- Bootstrap core CSS -->
   <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- Material Design Bootstrap -->
@@ -23,7 +114,7 @@ p.dashed {border-style: dashed;}
 .card {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 75%;
+    width: 40%;
     border-radius: 5px;
 }
 
@@ -133,7 +224,7 @@ tr:nth-child(even){background-color: #f2f2f2}
                   <i class="fa fa-github mr-2"></i>
                 </a>
               </li>
-              {% if session['logged_in'] or session['dealer_logged_in'] %}
+              {% if session['logged_in'] or session['dealer_logged_in']%}
               <li class="nav-item">
                   <a class="nav-link border border-light rounded">
                     <i class="fa fa-user mr-2"></i>{{user}}
@@ -161,81 +252,155 @@ tr:nth-child(even){background-color: #f2f2f2}
   <main class="mt-5 pt-4">
     <div class="container">
 
-      <h3 class="my-5 h3 text-center">Login</h3>
+      <br>
+      <center><button type="button" class="btn btn-success">{{username}}'s Dashboard</button></center>
+      <br>
 
-<center>
 
 <div class="row">
 
   <!-- the right hand side elements-->
-  <div class="col-md-6">
+<div class="col-md-6">
 
-<div class="card">
-<div class="container">
-    <center>
+<!--things go here-->
 
-{% if session['dealer_logged_in'] %}
-<p><br>Login successful!</p>
-{% else %}
-<button type="button" class="btn btn-primary disabled">Dealer Login</button>
-<form action="/login" method=post>
-    <dl>
-        
-    <dt><label for="id">Login ID</label>
-    <dd><input id="id" name="dealerusername" type="text" value="">
-    
-    </dd>
+<span class="heading">{{username}}'s Rating</span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star checked"></span>
+<span class="fa fa-star"></span>
+<p>4.1 average based on 254 reviews.</p>
+<hr style="border:3px solid #f1f1f1">
 
-        
-    <dt><label for="pwd">Password</label>
-    <dd><input id="pwd" name="dealerpassword" type="password" value="">
-    
-    </dd>
+<div class="row">
+  <div class="side">
+    <div>150</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-5"></div>
+    </div>
+  </div>
+  <div class="side right">
+    <div></div>
+  </div>
+  <div class="side">
+    <div>63</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-4"></div>
+    </div>
+  </div>
+  <div class="side right">
+    <div></div>
+  </div>
+  <div class="side">
+    <div>15</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-3"></div>
+    </div>
+  </div>
+  <div class="side right">
+    <div></div>
+  </div>
+  <div class="side">
+    <div>6</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-2"></div>
+    </div>
+  </div>
+  <div class="side right">
+    <div></div>
+  </div>
+  <div class="side">
+    <div>20</div>
+  </div>
+  <div class="middle">
+    <div class="bar-container">
+      <div class="bar-1"></div>
+    </div>
+  </div>
+</div>
 
-    </dl>
-    <p><input type=submit value=Login></p>
-</form>
-{% endif %}
-</center>
+<!--upto here-->
+<br><br>
+
+</div>
+
+<div class="col-md-6">
+  <div class="container">
+<div class="media">
+    <div class="media-body">
+      <h4 class="media-heading"><b>Sundar</b>&nbsp;&nbsp;&nbsp; Officer, Indian Railways</h4>
+      <p>Really proud of {{username}}, was able to complete the contract 2 months ahead of time. Wishing him all the best!</p>
+    </div>
+    <div class="media-right">
+      <img src="https://png.icons8.com/color/260/person-female.png" class="media-object" style="width:60px">
+    </div>
+  </div>
+  <hr>
+
+    <div class="media">
+    <div class="media-body">
+      <h4 class="media-heading"><b>Larry</b>&nbsp;&nbsp;&nbsp; CTO, Ministry of Electronics</h4>
+      <p>{{username}}'s circuit designs were so efficient that we managed to increase manufactures by at least 10% and cut costs by at least 8%.</p>
+    </div>
+    <div class="media-right">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4ZfGAvELrRSFejXY_OHJJYc9lnhUAOzci_cRtMzItLMgbLuaz" class="media-object" style="width:60px">
+    </div>
+  </div>
+</div>
+
+</div>
+
+
+<div class="row">
+
+  <!-- the right hand side elements-->
+<div class="col-md-12">
+
+<div class="containerach text-center">
+  <h3>We know {{username}}'s special. Here's a few key areas:</h3>
+  <br>
+  <div class="row">
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Electronic Design Prototypes</strong></p><br>
+      <a href="#demo" data-toggle="collapse">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnDwTpllZMvnVWPz3qqtv7LhAeH1i5FTUUI9XCuL-JWs7wNTVJ" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo" class="collapse">
+        <p>Over <b>40</b> projects completed in time. Can deliver at upto <b>7%</b> lower costs in Chennai, India.</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Locomotive Shipping</strong></p><br>
+      <a href="#demo2" data-toggle="collapse">
+        <img src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX6978129.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo2" class="collapse">
+        <p>Over <b>40</b> projects completed in time. Can deliver at upto <b>7%</b> lower costs in Chennai, India.</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="text-center"><strong>Construction services</strong></p><br>
+      <a href="#demo3" data-toggle="collapse">
+        <img src="https://d2gg9evh47fn9z.cloudfront.net/thumb_COLOURBOX9867788.jpg" class="img-circle person" alt="Random Name" width="255" height="255">
+      </a>
+      <div id="demo3" class="collapse">
+        <p>Over <b>40</b> projects completed in time. Can deliver at upto <b>7%</b> lower costs in Chennai, India.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 </div>
 </div>
-
-</div>
-
-  <div class="col-md-6">
-
-<div class="card">
-<div class="container">
-    <center>
-
-{% if session['logged_in'] %}
-<p>Login successful!</p>
-{% else %}
-<button type="button" class="btn btn-primary disabled">Contractor Login</button>
-<form action="/login" method=post>
-    <dl>
-        
-    <dt><label for="id">Login ID</label>
-    <dd><input id="id" name="contractorusername" type="text" value="">
-    
-    </dd>
-
-        
-    <dt><label for="pwd">Password</label>
-    <dd><input id="pwd" name="contractorpassword" type="password" value="">
-    
-    </dd>
-
-    </dl>
-    <p><input type=submit value=Login></p>
-</form>
-{% endif %}
-</center>
-</div>
-</div>
-
-
-</center>
 
     </div>
   </main>

@@ -10,6 +10,13 @@ def index():
 	else:
 		return render_template('index.html')
 
+@app.route('/userpage', methods=['GET', 'POST'])
+def userpage():
+	if session.get('logged_in'):
+		return render_template('./single-contractor/userpage.html', username=session['user'])
+	else:
+		return render_template('index.html')
+
 @app.route('/portal', methods=['GET', 'POST'])
 def portal():
 	if session.get('logged_in') or session.get('dealer_logged_in'):
