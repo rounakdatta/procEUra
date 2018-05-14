@@ -34,6 +34,104 @@
   <link href="{{ url_for('static', filename='css/mdb.min.css') }}" rel="stylesheet">
   <!-- Your custom styles (optional) -->
   <link href="{{ url_for('static', filename='css/style.min.css') }}" rel="stylesheet">
+
+<style type="text/css">
+body {
+	font-family: "Open Sans", sans-serif;
+}
+h2 {
+	color: #333;
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+	font-weight: bold;
+	position: relative;
+	margin: 30px 0 60px;
+}
+h2::after {
+	content: "";
+	width: 100px;
+	position: absolute;
+	margin: 0 auto;
+	height: 3px;
+	background: #8fbc54;
+	left: 0;
+	right: 0;
+	bottom: -10px;
+}
+.col-center {
+	margin: 0 auto;
+	float: none !important;
+}
+.carousel {
+	margin: 50px auto;
+	padding: 0 70px;
+}
+.carousel .item {
+	color: #999;
+	font-size: 14px;
+    text-align: center;
+	overflow: hidden;
+    min-height: 290px;
+}
+.carousel .item .img-box {
+	width: 135px;
+	height: 135px;
+	margin: 0 auto;
+	padding: 5px;
+	border: 1px solid #ddd;
+	border-radius: 50%;
+}
+.carousel .img-box img {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border-radius: 50%;
+}
+.carousel .testimonial {
+	padding: 30px 0 10px;
+}
+.carousel .overview {	
+	font-style: italic;
+}
+.carousel .overview b {
+	text-transform: uppercase;
+	color: #7AA641;
+}
+.carousel .carousel-control {
+	width: 40px;
+    height: 40px;
+    margin-top: -20px;
+    top: 50%;
+	background: none;
+}
+.carousel-control i {
+    font-size: 68px;
+	line-height: 42px;
+    position: absolute;
+    display: inline-block;
+	color: rgba(0, 0, 0, 0.8);
+    text-shadow: 0 3px 3px #e6e6e6, 0 0 0 #000;
+}
+.carousel .carousel-indicators {
+	bottom: -40px;
+}
+.carousel-indicators li, .carousel-indicators li.active {
+	width: 10px;
+	height: 10px;
+	margin: 1px 3px;
+	border-radius: 50%;
+}
+.carousel-indicators li {	
+	background: #999;
+	border-color: transparent;
+	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+}
+.carousel-indicators li.active {	
+	background: #555;		
+	box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
+}
+</style>
+
   <style type="text/css">
     html,
     body,
@@ -210,9 +308,11 @@
                 <a href="{{ url_for('whitepaper') }}" class="btn btn-outline-white">Whitepaper
                   <i class="fa fa-download ml-2"></i>
                 </a>
-                
-                
-
+                 <center>
+                 <a href="{{ url_for('demo') }}" class="btn btn-success">Request Demo
+                  <i class="fa fa-rocket ml-2"></i>
+                </a>
+                </center>
               </div>
               <!--Grid column-->
               
@@ -262,12 +362,12 @@
           <!--Grid column-->
           <div class="col-md-6 mb-4">
 
-            <img src="./img/corruption.jpg" class="img-fluid z-depth-1-half" alt="">
+            <img src="{{ url_for('static', filename='img/corruption.jpg') }}" class="img-fluid z-depth-1-half">
 
           </div>
           <div class="col-md-6 mb-4">
 
-            <img src="./img/solution.svg" height="277" width="300" class="img-fluid z-depth-1-half" alt="">
+            <img src="{{ url_for('static', filename='img/solution.svg') }}" alt="problems" height="277" width="300" class="img-fluid z-depth-1-half" alt="">
 
           </div>
           <!--Grid column-->
@@ -284,22 +384,6 @@
             <h3 class="h3 mb-3">Traditional systems are at their worst</h3>
             <p>Procurement deals are ridden with corruption, delays and inefficiency.</p>
 
-
-<script type="text/javascript">
-
-  $(function(){
-
-        $(".write").typed({
-
-            strings: ["Welcome to ItSolutionStuff.com!", "Thanks for visit"],
-
-            typeSpeed: 1,
-
-        });
-
-    });
-
-</script>
 
             <img src="{{ url_for('static', filename='img/problem.png') }}" alt="problems" height=auto width="600">
             <!-- Main heading -->
@@ -416,10 +500,60 @@
 
       <hr class="my-5">
 
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-center m-auto">
+			<h2>What people are saying</h2>
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Carousel indicators -->
+				<ol class="carousel-indicators">
+					<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					<li data-target="#myCarousel" data-slide-to="1"></li>
+					<li data-target="#myCarousel" data-slide-to="2"></li>
+					<li data-target="#myCarousel" data-slide-to="3"></li>
+				</ol>   
+				<!-- Wrapper for carousel items -->
+				<div class="carousel-inner">
+					<div class="item carousel-item active">
+
+						<div class="img-box"><img src="{{ url_for('static', filename='img/peter.png') }}" class="img-fluid z-depth-1-half"></div>
+						<p class="testimonial">Team. I’ve read the document and it is excellent.  I’m impressed! Very professional and a compelling concept.</p>
+						<p class="overview"><b>Peter Longworth</b>, Mentor</p>
+					</div>
+					<div class="item carousel-item">
+						<div class="img-box"><img src="{{ url_for('static', filename='img/aaliyah.png') }}" class="img-fluid z-depth-1-half"></div>
+						<p class="testimonial">Very insightful. I like the mechanics that you have suggested for measuring the social impact.</p>
+						<p class="overview"><b>Aaliyah</b>, Mentor</p>
+					</div>
+					<div class="item carousel-item">
+						<div class="img-box"><img src="{{ url_for('static', filename='img/trotolla.jpeg') }}" class="img-fluid z-depth-1-half"></div>
+						<p class="testimonial">Glad to join.</p>
+						<p class="overview"><b>Trotolla</b>, Mentor</p>
+					</div>
+					<div class="item carousel-item">
+						<div class="img-box"><img src="{{ url_for('static', filename='img/ben.png') }}" class="img-fluid z-depth-1-half"></div>
+						<p class="testimonial">This is awesome, just went through the document - looking forward to chatting next week! </p>
+						<p class="overview"><b>Benjamin Siegel</b>, Mentor</p>
+					</div>
+				</div>
+				<!-- Carousel controls -->
+				<a class="carousel-control left carousel-control-prev" href="#myCarousel" data-slide="prev">
+					<i class="fa fa-angle-left"></i>
+				</a>
+				<a class="carousel-control right carousel-control-next" href="#myCarousel" data-slide="next">
+					<i class="fa fa-angle-right"></i>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+      <hr class="my-5">
+
       <!--Section: Not enough-->
       <section>
 
-        <h2 class="my-5 h3 text-center">The Fault in Our Roots</h2>
+        <h3 class="my-5 h3 text-center">The Fault in Our Roots</h3>
 
         <!--First row-->
         <div class="row features-small mb-5 mt-3 wow fadeIn">
@@ -547,7 +681,7 @@
       <!--Section: More-->
       <section>
 
-        <h2 class="my-5 h3 text-center">Core features preserved, Integrity and Usability enhanced</h2>
+        <h3 class="my-5 h3 text-center">Core features preserved, Integrity and Usability enhanced</h3>
 
         <!--First row-->
         <div class="row features-small mt-5 wow fadeIn">
@@ -700,6 +834,8 @@
     </div>
   </main>
   <!--Main layout-->
+
+        <hr class="my-5">
 
   	<div class="site-container">
 		<section class="flx-center">
@@ -977,7 +1113,7 @@
 			currentSection = $(window).scrollTop() / elementHeight;
 			currentSectionNum = Math.ceil(currentSection + 0.01);
 			sliderTop = $(window).scrollTop() / scale;
-			$('.nav-pointer').css('top', sliderTop).text(currentSectionNum + '/' + sectionAmount);
+			$('.nav-pointer').css('top', sliderTop).text(currentSectionNum + '/8');
 		}
 
 		function sliderMove(e) {

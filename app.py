@@ -10,6 +10,19 @@ def index():
 	else:
 		return render_template('index.html')
 
+@app.route('/demo', methods=['GET', 'POST'])
+def demo():
+	if request.method == 'POST' and 'cname' in request.form and 'camount' in request.form and 'copen' in request.form and 'cclose' in request.form:
+		with open("./demo/contracts.txt", "a") as demo:
+			demo.write(request.form['cname'] + " " + request.form['camount'] + " " + request.form['copen'] + " " + request.form['cclose'] + "\n")
+
+	all_contracts = []
+	with open("./demo/contracts.txt", "r") as reader:
+		for line in reader:
+			all_contracts.append(line.split())
+
+	return render_template('demo.html', all_contracts=all_contracts)
+
 @app.route('/userpage', methods=['GET', 'POST'])
 def userpage():
 	if session.get('logged_in'):
@@ -141,9 +154,9 @@ def tender():
 @app.route('/developers', methods=['GET', 'POST'])
 def developers():
 	if session.get('logged_in') or session.get('dealer_logged_in'):
-		return render_template('tender.html', user=session['user'])
+		return render_template('developers.html', user=session['user'])
 	else:
-		return render_template('tender.html')
+		return render_template('developers.html')
 
 app.secret_key = "helloworld this is satoshi"
 
