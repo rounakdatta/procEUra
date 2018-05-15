@@ -9,6 +9,7 @@
   <title>Demo</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fengyuanchen.github.io/datepicker/css/datepicker.css">
   <!-- Bootstrap core CSS -->
   <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
   <!-- Material Design Bootstrap -->
@@ -174,12 +175,14 @@ tr:nth-child(even){background-color: #f2f2f2}
 <div class="container">
     <center>
 
+<h6>All created contracts</h6>
+
   <ul class="list-group">
     <li class="list-group-item">
       <p>
         <div class="row">
           <div class="col-md-3">
-            <b>Name</b>
+            <b>Title</b>
           </div>
           <div class="col-md-3">
             <b>Amount</b>
@@ -221,28 +224,51 @@ tr:nth-child(even){background-color: #f2f2f2}
 <div class="container">
     <center>
 
+    	<h6>Create a new Contract</h6>
+
 <form action="/demo" method=post>
     <dl>
         
-    <dt><label for="id">Contract Name</label>
-    <dd><input id="id" name="cname" type="text" value="">
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+  </div>
+  <input type="text" class="form-control" name="cname" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+</div>
     
     </dd>
 
-    <dt><label for="id">Amount</label>
-    <dd><input id="id" name="camount" type="number" value="">
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Amount</span>
+  </div>
+  <input type="number" class="form-control" name="camount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+</div>
     
     </dd>
 
-        
-    <dt><label for="pwd">Opening Date</label>
-    <dd><input id="pwd" name="copen" type="text" value="">
-    
+    <br>
+
+		<dd>
+        <div class="docs-datepicker">
+          <div class="input-group">
+            <input type="text" class="form-control docs-date" name="copen" placeholder="Choose Contract Opening Date">
+            <div class="input-group-append">
+            </div>
+          </div>
+          <div class="docs-datepicker-container"></div>
+        </div>
     </dd>
 
-    <dt><label for="pwd">Closing Date</label>
-    <dd><input id="pwd" name="cclose" type="text" value="">
-    
+    		<dd>
+        <div class="docs-datepicker">
+          <div class="input-group">
+            <input type="text" class="form-control docs-date" name="cclose" placeholder="Choose Contract Closing Date">
+            <div class="input-group-append">
+            </div>
+          </div>
+          <div class="docs-datepicker-container"></div>
+        </div>
     </dd>
 
     </dl>
@@ -324,6 +350,9 @@ tr:nth-child(even){background-color: #f2f2f2}
   <!-- SCRIPTS -->
   <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://fengyuanchen.github.io/datepicker/js/datepicker.js"></script>
+<script type="text/javascript" src="https://fengyuanchen.github.io/datepicker/js/datepicker.en-US.js"></script>
+<script type="text/javascript" src="https://fengyuanchen.github.io/datepicker/js/main.js"></script>
   <!-- Bootstrap tooltips -->
   <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
   <!-- Bootstrap core JavaScript -->
