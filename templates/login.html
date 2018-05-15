@@ -177,7 +177,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 {% if session['dealer_logged_in'] %}
 <p><br>Login successful!</p>
 {% else %}
-<button type="button" class="btn btn-primary disabled">Dealer Login</button>
+<button type="button" class="btn btn-primary disabled">Supplier Login</button>
 <form action="/login" method=post>
     <dl>
         
@@ -211,7 +211,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 {% if session['logged_in'] %}
 <p>Login successful!</p>
 {% else %}
-<button type="button" class="btn btn-primary disabled">Contractor Login</button>
+<button type="button" class="btn btn-primary disabled">Client Login</button>
 <form action="/login" method=post>
     <dl>
         

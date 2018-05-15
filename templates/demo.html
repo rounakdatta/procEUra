@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/nexttech-icon.png') }}">
-  <title>Demo</title>
+  <title>e-Procurement Portal</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fengyuanchen.github.io/datepicker/css/datepicker.css">
@@ -162,38 +162,44 @@ tr:nth-child(even){background-color: #f2f2f2}
   <main class="mt-5 pt-4">
     <div class="container">
 
-      <h3 class="my-5 h3 text-center">Demo</h3>
+      <h3 class="my-5 h3 text-center">Welcome to the e-Procurement Portal!</h3>
 
 <center>
 
 <div class="row">
 
 
-<div class="col-md-6">
+<div class="col-md-12">
 
 <div class="card">
 <div class="container">
     <center>
-
-<h6>All created contracts</h6>
+      <br>
 
   <ul class="list-group">
     <li class="list-group-item">
       <p>
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-md-2">
             <b>Title</b>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <b>Amount</b>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <b>Open</b>
           </div>
-          <div class="col-md-3">
+          <div class="col-md-2">
             <b>Close</b>
           </div>
+          <div class="col-md-2">
+            <b>Duration</b>
+          </div>
+          <div class="col-md-2">
+            <b>Location</b>
+          </div>
         </div>
+      </div>
       </p>
     </li>
 {% for contract in all_contracts %}
@@ -201,8 +207,8 @@ tr:nth-child(even){background-color: #f2f2f2}
     <p>
       <div class="row">
     {% for comp in contract %}
-    <div class="col-md-3">
-    {{comp}}
+    <div class="col-md-2">
+    <a href="/tender/{{contract[0]}}">{{comp}}</a>
   </div>
     {% endfor %}
   </div>
@@ -210,30 +216,31 @@ tr:nth-child(even){background-color: #f2f2f2}
   </li>
 {% endfor %}
 </ul>
-
+<br>
 </center>
 </div>
 </div>
 
 </div>
 
+<center>
   <!-- the right hand side elements-->
-  <div class="col-md-6">
-
+  <div class="col-md-12">
+<br><hr><br>
 <div class="card">
 <div class="container">
     <center>
 
-    	<h6>Create a new Contract</h6>
+    	<h6>Create new Tender</h6>
 
 <form action="/demo" method=post>
     <dl>
         
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+    <span class="input-group-text" id="inputGroup-sizing-default">Title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
   </div>
-  <input type="text" class="form-control" name="cname" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+  <input type="text" class="form-control" name="cname" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Contract name title with NO SPACES">
 </div>
     
     </dd>
@@ -242,13 +249,14 @@ tr:nth-child(even){background-color: #f2f2f2}
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Amount</span>
   </div>
-  <input type="number" class="form-control" name="camount" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+  <input type="number" class="form-control" name="camount" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Amount in NUMBERS">
 </div>
     
     </dd>
 
     <br>
-
+<div class="row">
+<div class="col-md-6">
 		<dd>
         <div class="docs-datepicker">
           <div class="input-group">
@@ -259,7 +267,9 @@ tr:nth-child(even){background-color: #f2f2f2}
           <div class="docs-datepicker-container"></div>
         </div>
     </dd>
+  </div>
 
+<div class="col-md-6">
     		<dd>
         <div class="docs-datepicker">
           <div class="input-group">
@@ -270,6 +280,24 @@ tr:nth-child(even){background-color: #f2f2f2}
           <div class="docs-datepicker-container"></div>
         </div>
     </dd>
+  </div>
+</div>
+
+<dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Duration</span>
+  </div>
+  <input type="number" class="form-control" name="cduration" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Duration in DAYS">
+</div>
+
+<dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Location</span>
+  </div>
+  <input type="text" class="form-control" name="clocation" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Location with NO SPACES">
+</div>
+    
+    </dd>
 
     </dl>
     <p><button type=submit class="btn btn-primary">Create Contract</button></p>
@@ -279,6 +307,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 </div>
 
 </div>
+</center>
 
 
 </center>

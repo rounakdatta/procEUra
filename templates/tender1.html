@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/nexttech-icon.png') }}">
-  <title>Register</title>
+  <title>Tender Details</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
@@ -16,45 +16,6 @@
   <!-- Your custom styles (optional) -->
   <link href="{{ url_for('static', filename='css/style.min.css') }}" rel="stylesheet">
 
-<style>
-
-p.dashed {border-style: dashed;}
-
-.card {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 75%;
-    border-radius: 5px;
-}
-
-.card:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-
-img {
-    border-radius: 5px 5px 0 0;
-}
-
-.container {
-    padding: 2px 16px;
-}
-</style>
-
-<style>
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    width: 100%;
-    border: 1px solid #ddd;
-}
-
-th, td {
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even){background-color: #f2f2f2}
-</style>
 
 <style>
 #customers {
@@ -161,84 +122,261 @@ tr:nth-child(even){background-color: #f2f2f2}
   <main class="mt-5 pt-4">
     <div class="container">
 
-      <h3 class="my-5 h3 text-center">Register</h3>
+      <h3 class="my-5 h3 text-center">Tender details</h3>
 
+      <table id="customers">
+    <tr>
+    <th>Title</th>
+    <td>{{data[0]}}</td>
+    <th>Bid Opening Date</th>
+    <td>{{data[2]}}</td>
+    <th>Bid Opening Date</th>
+    <td>{{data[3]}}</td>
+  </tr>
+  <tr>
+    <th>Work Description</th>
+    <td>{{data[4]}}</td>
+    <th>Parameter</th>
+    <td>{{data[4]}}</td>
+    <th>Parameter</th>
+    <td>{{data[4]}}</td>
+  </tr>
+  <tr>
+    <th>Independent External Monitor</th>
+    <td>{{data[4]}}</td>
+    <th>Parameter</th>
+    <td>{{data[4]}}</td>
+    <th>Parameter</th>
+    <td>{{data[4]}}</td>
+  </tr>
+    <tr>
+    <th>Tender Value in ₹ </th>
+    <td>{{data[1]}}</td>
+    <th>Product Category</th>
+    <td>{{data[4]}}</td>
+    <th>Sub category</th>
+    <td>{{data[4]}}</td>
+  </tr>
+    <tr>
+    <th>Contract Type</th>
+    <td>Tender</td>
+    <th>Bid Validity(Days)</th>
+    <td>{{data[4]}}</td>
+    <th>Period Of Work(Days)</th>
+    <td>{{data[4]}}</td>
+  </tr>
+    <tr>
+    <th>Location</th>
+    <td>{{data[4]}}</td>
+    <th>Pincode</th>
+    <td>{{data[4]}}</td>
+    <th>Pre Bid Meeting Place</th>
+    <td>{{data[4]}}</td>
+  </tr>
+    <tr>
+    <th>Pre Bid Meeting Address</th>
+    <td>{{data[4]}}</td>
+    <th>Pre Bid Meeting Date</th>
+    <td>{{data[4]}}</td>
+    <th>Bid Opening Place</th>
+    <td>{{data[4]}}</td>
+  </tr>
+</table>
+
+<br><br>
+
+      <!--Grid row-->
+      <div class="row d-flex justify-content-center">
+
+        <!--
+        <div class="col-md-8 text-center">
+
+          <p class="mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo qui laboriosam nihil reiciendis fugit eius nostrum
+            ipsum odio, voluptate debitis laborum perspiciatis voluptatibus? Culpa expedita rem totam eos fugit atque!</p>
+
+        </div>
+        -->
+
+      </div>
+      <!--Grid row-->
+
+
+
+      <!--Grid row-->
+      <div class="row text-center wow fadeIn">
+
+        <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4">
+
+          <!--Card-->
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header">
+              <h4>
+                <strong>Tender Fee Details, [Total Fee in ₹ * - 1,000]</strong>
+              </h4>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+
+      <table id="customers">
+    <tr>
+    <th>Title</th>
+    <td>LICENSE FOR OPERATING TEA / COFFEE / COLD DRINKS SHOP AT DEPARTURE LOUNGE OF SILCHAR AIRPORT.</td>
+  </tr>
+  <tr>
+    <th>Work Description</th>
+    <td>LICENSE FOR OPERATING TEA / COFFEE / COLD DRINKS SHOP AT DEPARTURE LOUNGE OF SILCHAR AIRPORT.</td>
+  </tr>
+  <tr>
+    <th>Independent External Monitor</th>
+    <td>NA</td>
+</table>
+
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+
+
+                <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4">
+
+          <!--Card-->
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header">
+              <h4>
+                <strong>Tender Fee Details, [Total Fee in ₹ * - 1,000]</strong>
+              </h4>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+
+      <table id="customers">
+    <tr>
+    <th>Title</th>
+    <td>LICENSE FOR OPERATING TEA / COFFEE / COLD DRINKS SHOP AT DEPARTURE LOUNGE OF SILCHAR AIRPORT.</td>
+  </tr>
+  <tr>
+    <th>Work Description</th>
+    <td>LICENSE FOR OPERATING TEA / COFFEE / COLD DRINKS SHOP AT DEPARTURE LOUNGE OF SILCHAR AIRPORT.</td>
+  </tr>
+  <tr>
+    <th>Independent External Monitor</th>
+    <td>NA</td>
+</table>
+
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+                <!--Grid column-->
+        <div class="col-lg-4 col-md-12 mb-4">
+
+          <!--Card-->
+          <div class="card">
+
+            <!-- Card header -->
+            <div class="card-header">
+              <h4>
+                <strong>Tender Fee Details, [Total Fee in ₹ * - 1,000]</strong>
+              </h4>
+            </div>
+
+            <!--Card content-->
+            <div class="card-body">
+
+      <table id="customers">
+    <tr>
+    <th>Title</th>
+    <td>LICENSE FOR OPERATING TEA / COFFEE / COLD DRINKS SHOP AT DEPARTURE LOUNGE OF SILCHAR AIRPORT.</td>
+  </tr>
+  <tr>
+    <th>Work Description</th>
+    <td>LICENSE FOR OPERATING TEA / COFFEE / COLD DRINKS SHOP AT DEPARTURE LOUNGE OF SILCHAR AIRPORT.</td>
+  </tr>
+  <tr>
+    <th>Independent External Monitor</th>
+    <td>NA</td>
+</table>
+
+            </div>
+
+          </div>
+          <!--/.Card-->
+
+        </div>
+        <!--Grid column-->
+
+<div class="col-md-6">
 <center>
+<iframe src="https://drive.google.com/file/d/140MHGaKp5jBvmh0qd8e7_mB_IBun4oyI/preview" frameborder="0" style="overflow:hidden;height:300px;" width="100%" height="580"></iframe>
+</center>
+</div>
 
-<div class="row">
+{% if session['bid_complete'] %}
+
+{% endif %}
 
 
+{% if session['dealer_logged_in'] and not session['bid_complete'] %}
+<div class="col-md-6">
+
+  <ul class="list-group">
+{% for bid in all_my_bids %}
+  <li class="list-group-item"><p><button type="submit" name="closebid" choice={{bid}} class="btn btn-primary disabled"><strong>{{bid}}</strong> - Close Bidding</button></p></li>
+{% endfor %}
+</ul>
+
+</div>
+{% endif %}
+
+
+{% if session['bid_submitted'] and not session['dealer_logged_in'] and not session['bid_complete'] %}
+<div class="col-md-6">
+<center><button type="submit" class="btn btn-primary disabled">{{status}}<br>{{amount}}</button></center>
+</div>
+{% else %}
+{% if not session['dealer_logged_in'] and session['logged_in'] and not session['bid_complete'] %}
 <div class="col-md-6">
 
 <div class="card">
 <div class="container">
     <center>
-
-{% if session['logged_in'] %}
-<p>Registration successful!</p>
-{% else %}
-<button type="button" class="btn btn-primary disabled">Supplier Register</button>
-<form action="/register" method=post>
+        <form action="/tender" method=post>
     <dl>
         
-    <dt><label for="id">User ID</label>
-    <dd><input id="id" name="dealerusername" type="text" value="">
-    
-    </dd>
-
-        
-    <dt><label for="pwd">Password</label>
-    <dd><input id="pwd" name="dealerpassword" type="password" value="">
+    <dt><label for="id">Bid Amount</label>
+    <dd><input id="id" name="bidamount" type="number" min="10000" max="99999" value="">
     
     </dd>
 
     </dl>
-    <p><input type=submit value=Register></p>
+
+    <input type="checkbox" name="checkbox" value="agree"  >&nbsp;I hereby agree to the T&C<br>
+    <p><button type="submit" class="btn btn-primary" onclick="if(!this.form.checkbox.checked){alert('You must agree to the terms first.');return false}" >Make Bid</button></p>
 </form>
+</center>
+</div>
+</div>
+
+</div>
 {% endif %}
-</center>
-</div>
-</div>
-
-</div>
-
-  <!-- the right hand side elements-->
-  <div class="col-md-6">
-
-<div class="card">
-<div class="container">
-    <center>
-
-{% if session['logged_in'] %}
-<p>Registration successful!</p>
-{% else %}
-<button type="button" class="btn btn-primary disabled">Client Register</button>
-<form action="/register" method=post>
-    <dl>
-        
-    <dt><label for="id">User ID</label>
-    <dd><input id="id" name="contractorusername" type="text" value="">
-    
-    </dd>
-
-        
-    <dt><label for="pwd">Password</label>
-    <dd><input id="pwd" name="contractorpassword" type="password" value="">
-    
-    </dd>
-
-    </dl>
-    <p><input type=submit value=Register></p>
-</form>
 {% endif %}
-</center>
-</div>
-</div>
-
-</div>
-
-
-</center>
+      <!--Grid row-->
 
     </div>
   </main>
