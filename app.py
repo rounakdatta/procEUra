@@ -3,6 +3,8 @@ import re
 
 app = Flask(__name__)
 
+root_dir = '.'
+
 @app.route('/', methods=['GET', 'POST'])
 def index():
 	if session.get('logged_in') or session.get('dealer_logged_in'):
@@ -13,11 +15,11 @@ def index():
 @app.route('/demo', methods=['GET', 'POST'])
 def demo():
 	if request.method == 'POST' and 'cname' in request.form and 'camount' in request.form and 'copen' in request.form and 'cclose' in request.form:
-		with open("./demo/contracts.txt", "a") as demo:
+		with open(root_dir + "/demo/contracts.txt", "a") as demo:
 			demo.write(request.form['cname'] + " " + request.form['camount'] + " " + request.form['copen'] + " " + request.form['cclose'] + "\n")
 
 	all_contracts = []
-	with open("./demo/contracts.txt", "r") as reader:
+	with open(root_dir + "/demo/contracts.txt", "r") as reader:
 		for line in reader:
 			all_contracts.append(line.split())
 
@@ -47,7 +49,7 @@ def whitepaper():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if request.method == 'POST' and 'dealerusername' in request.form and 'dealerpassword' in request.form:
-		f = open("./users/dealers/dealers.txt", "r")
+		f = open(root_dir + "/users/dealers/dealers.txt", "r")
 		creds = f.read()
 		f.close()
 
@@ -61,7 +63,7 @@ def login():
 			flash('wrong password!')
 
 	if request.method == 'POST' and 'contractorusername' in request.form and 'contractorpassword' in request.form:
-		f = open("./users/contractors/contractors.txt", "r")
+		f = open(root_dir + "/users/contractors/contractors.txt", "r")
 		creds = f.read()
 		f.close()
 
@@ -88,7 +90,7 @@ def register():
 		return render_template('register.html', user=session['user'])
 
 	if request.method == 'POST' and 'contractorusername' in request.form and 'contractorpassword' in request.form:
-			with open("./users/contractors/contractors.txt", "a") as bidder:
+			with open(root_dir + "/users/contractors/contractors.txt", "a") as bidder:
 				bidder.write(request.form['contractorusername'] + "-" + request.form['contractorpassword'] + "\n")
 
 			return render_template('index.html')
@@ -96,7 +98,7 @@ def register():
 		flash('wrong password!')
 
 	if request.method == 'POST' and 'dealerusername' in request.form and 'dealerpassword' in request.form:
-			with open("./users/dealers/dealers.txt", "a") as bidder:
+			with open(root_dir + "/users/dealers/dealers.txt", "a") as bidder:
 				bidder.write(request.form['dealerusername'] + "-" + request.form['dealerpassword'] + "\n")
 
 			return render_template('index.html')
@@ -109,7 +111,7 @@ def register():
 def tender():
 
 	if session.get('user'):
-		f = open("./tenders/t1/bids.txt", "r")
+		f = open(root_dir + "/tenders/t1/bids.txt", "r")
 		bids = f.read()
 		bidsearch = re.search(session['user'], bids)
 		if bidsearch is not None:
@@ -127,7 +129,7 @@ def tender():
 
 	if request.method == 'POST' and 'bidamount' in request.form:
 
-		with open("./tenders/t1/bids.txt", "a") as bidder:
+		with open(root_dir + "/tenders/t1/bids.txt", "a") as bidder:
 			bidder.write(session['user'] + "-" + request.form['bidamount'] + "\n")
 
 		session['bid_submitted'] = True
@@ -135,7 +137,7 @@ def tender():
 
 	if request.method == 'POST' and 'closebid' in request.form:
 
-		with open("./tenders/t1/bids.txt", "w") as bidder:
+		with open(root_dir + "/tenders/t1/bids.txt", "w") as bidder:
 			bidder.write("WINNER - " + request.form['choice'])
 
 		session['bid_complete'] = True
