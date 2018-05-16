@@ -17,16 +17,19 @@ def demo():
 	if request.method == 'POST' and 'cname' in request.form and 'camount' in request.form and 'copen' in request.form and 'cclose' in request.form and 'cduration' in request.form and 'clocation' in request.form:
 		with open(root_dir + "/demo/contracts.txt", "a") as demo:
 			demo.write(request.form['cname'] + " " + request.form['camount'] + " " + request.form['copen'] + " " + request.form['cclose'] + " " + request.form['cduration'] + " " + request.form['clocation'] + "\n")
+			newfile = open(root_dir + "/tenders/" + request.form['cname'] + ".txt", "w+")
+			newfile.close()
 
 	all_contracts = []
 	with open(root_dir + "/demo/contracts.txt", "r") as reader:
 		for line in reader:
 			all_contracts.append(line.split())
 
-	return render_template('demo.html', all_contracts=all_contracts)
+	return render_template('demo.html', all_contracts=all_contracts, user=session['user'])
 
-@app.route('/tender/<tender_title>')
+@app.route('/tender/<tender_title>', methods=['GET', 'POST'])
 def this_tender(tender_title):
+	session['tender_title'] = tender_title
 	with open(root_dir + "/demo/contracts.txt", "r") as reader:
 		for line in reader:
 			if(line.split()[0] == tender_title):
@@ -34,7 +37,7 @@ def this_tender(tender_title):
 				break
 
 	if session.get('user'):
-		f = open(root_dir + "/tenders/t1/bids.txt", "r")
+		f = open(root_dir + "/tenders/" + tender_title + ".txt", "r")
 		bids = f.read()
 		bidsearch = re.search(session['user'], bids)
 		if bidsearch is not None:
@@ -52,19 +55,10 @@ def this_tender(tender_title):
 
 	if request.method == 'POST' and 'bidamount' in request.form:
 
-		with open(root_dir + "/tenders/t1/bids.txt", "a") as bidder:
+		with open(root_dir + "/tenders/" + tender_title + ".txt", "a") as bidder:
 			bidder.write(session['user'] + "-" + request.form['bidamount'] + "\n")
 
 		session['bid_submitted'] = True
-		return render_template('portal.html', user=session['user'])
-
-	if request.method == 'POST' and 'closebid' in request.form:
-
-		with open(root_dir + "/tenders/t1/bids.txt", "w") as bidder:
-			bidder.write("WINNER - " + request.form['choice'])
-
-		session['bid_complete'] = True
-		session['bid_winner'] = request.form['choice']
 		return render_template('portal.html', user=session['user'])
 
 	if session.get('logged_in') or session.get('dealer_logged_in'):
@@ -161,48 +155,14 @@ def register():
 @app.route('/tender', methods=['GET', 'POST'])
 def tender():
 
-	if session.get('user'):
-		f = open(root_dir + "/tenders/t1/bids.txt", "r")
-		bids = f.read()
-		bidsearch = re.search(session['user'], bids)
-		if bidsearch is not None:
-			start = bidsearch.start() + len(session['user']) + 1 
-			calcbid = bids[start:start + 5]
-			session['bid_submitted'] = True
-		else:
-			calcbid = str(0)
-			session['bid_submitted'] = False
-
-	if session.get('dealer_logged_in'):
-		bids = bids.replace('\n', ' ')
-		print(bids)
-		return render_template('tender.html', user=session['user'], all_my_bids=bids.split())
-
 	if request.method == 'POST' and 'bidamount' in request.form:
+		print(session['tender_title'] + "hello")
 
-		with open(root_dir + "/tenders/t1/bids.txt", "a") as bidder:
+		with open(root_dir + "/tenders/" + session['tender_title'] + ".txt", "a") as bidder:
 			bidder.write(session['user'] + "-" + request.form['bidamount'] + "\n")
 
 		session['bid_submitted'] = True
-		return render_template('portal.html', user=session['user'])
-
-	if request.method == 'POST' and 'closebid' in request.form:
-
-		with open(root_dir + "/tenders/t1/bids.txt", "w") as bidder:
-			bidder.write("WINNER - " + request.form['choice'])
-
-		session['bid_complete'] = True
-		session['bid_winner'] = request.form['choice']
-		return render_template('portal.html', user=session['user'])
-
-	if session.get('logged_in') or session.get('dealer_logged_in'):
-
-		if session['bid_submitted'] == True:
-			return render_template('tender.html', user=session['user'], status="BID SUBMITTED", amount=calcbid)
-		else:
-			return render_template('tender.html', user=session['user'])
-	else:
-		return render_template('tender.html')
+		return render_template('demo.html', user=session['user'])
 
 @app.route('/developers', methods=['GET', 'POST'])
 def developers():
