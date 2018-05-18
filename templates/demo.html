@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/nexttech-icon.png') }}">
-  <title>e-Procurement Portal</title>
+  <title>Demo Portal</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fengyuanchen.github.io/datepicker/css/datepicker.css">
@@ -83,6 +83,19 @@ tr:nth-child(even){background-color: #f2f2f2}
 }
 </style>
 
+<style>
+header {
+    font-family: 'Roboto';
+}
+</style>
+<style type="text/css">
+  .btn-round-lg{
+border-radius: 22.5px;
+font-family: 'Roboto';font-size: 15px;
+}
+</style>
+<link href='https://fonts.googleapis.com/css' rel='stylesheet'>
+
 </head>
 
 <body>
@@ -93,7 +106,7 @@ tr:nth-child(even){background-color: #f2f2f2}
 
           <!-- Brand -->
           <a class="navbar-brand" href="{{ url_for('index') }}">
-            <strong>Team Satoshi</strong>
+            <button type="button" class="btn btn-default btn-round-lg"><strong>Team Satoshi</strong></button>
           </a>
 
           <!-- Collapse -->
@@ -105,14 +118,13 @@ tr:nth-child(even){background-color: #f2f2f2}
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left -->
             <ul class="navbar-nav mr-auto">
+
               <li class="nav-item">
-                <a class="nav-link" href="https://en.wikipedia.org/wiki/Government_procurement" target="_blank">Procurement</a>
+                <a class="nav-link" href="{{ url_for('whitepaper') }}"><strong>Whitepaper</strong></a>
               </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="https://en.wikipedia.org/wiki/Blockchain" target="_blank">Blockchain</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('developers') }}">Developers</a>
+                <a class="nav-link" href="{{ url_for('developers') }}"><strong>Developers</strong></a>
               </li>
             </ul>
 
@@ -162,7 +174,7 @@ tr:nth-child(even){background-color: #f2f2f2}
   <main class="mt-5 pt-4">
     <div class="container">
 
-      <h3 class="my-5 h3 text-center">Welcome to the e-Procurement Portal!</h3>
+      <h3 class="my-5 h3 text-center">Welcome to the DEMO e-Procurement Portal!</h3>
 
 <center>
 

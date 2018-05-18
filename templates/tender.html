@@ -43,6 +43,19 @@
 }
 </style>
 
+<style>
+header {
+    font-family: 'Roboto';
+}
+</style>
+<style type="text/css">
+  .btn-round-lg{
+border-radius: 22.5px;
+font-family: 'Roboto';font-size: 15px;
+}
+</style>
+<link href='https://fonts.googleapis.com/css' rel='stylesheet'>
+
 </head>
 
 <body>
@@ -53,7 +66,7 @@
 
           <!-- Brand -->
           <a class="navbar-brand" href="{{ url_for('index') }}">
-            <strong>Team Satoshi</strong>
+            <button type="button" class="btn btn-default btn-round-lg"><strong>Team Satoshi</strong></button>
           </a>
 
           <!-- Collapse -->
@@ -65,14 +78,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left -->
             <ul class="navbar-nav mr-auto">
+
               <li class="nav-item">
-                <a class="nav-link" href="https://en.wikipedia.org/wiki/Government_procurement" target="_blank">Procurement</a>
+                <a class="nav-link" href="{{ url_for('whitepaper') }}"><strong>Whitepaper</strong></a>
               </li>
+
               <li class="nav-item">
-                <a class="nav-link" href="https://en.wikipedia.org/wiki/Blockchain" target="_blank">Blockchain</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{ url_for('developers') }}">Developers</a>
+                <a class="nav-link" href="{{ url_for('developers') }}"><strong>Developers</strong></a>
               </li>
             </ul>
 

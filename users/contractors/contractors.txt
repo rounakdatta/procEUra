@@ -7,3 +7,6 @@ foo-bar
 -
 helloworld-myworld
 click-me
+foobar-what
+wtf-wtf
+me-me

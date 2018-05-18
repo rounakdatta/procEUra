@@ -141,7 +141,7 @@ def register():
 			with open(root_dir + "/users/contractors/contractors.txt", "a") as bidder:
 				bidder.write(request.form['contractorusername'] + "-" + request.form['contractorpassword'] + "\n")
 
-			return render_template('index.html')
+			return render_template('registerdetails.html')
 	else:
 		flash('wrong password!')
 
@@ -149,7 +149,7 @@ def register():
 			with open(root_dir + "/users/dealers/dealers.txt", "a") as bidder:
 				bidder.write(request.form['dealerusername'] + "-" + request.form['dealerpassword'] + "\n")
 
-			return render_template('index.html')
+			return render_template('registerdetails.html')
 	else:
 		flash('wrong password!')	
 
