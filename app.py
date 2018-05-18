@@ -25,7 +25,10 @@ def demo():
 		for line in reader:
 			all_contracts.append(line.split())
 
-	return render_template('demo.html', all_contracts=all_contracts, user=session['user'])
+	if session.get('logged_in') or session.get('dealer_logged_in'):
+		return render_template('demo.html', all_contracts=all_contracts, user=session['user'])
+	else:
+		return render_template('demo.html', all_contracts=all_contracts)
 
 @app.route('/tender/<tender_title>', methods=['GET', 'POST'])
 def this_tender(tender_title):
@@ -162,7 +165,7 @@ def tender():
 			bidder.write(session['user'] + "-" + request.form['bidamount'] + "\n")
 
 		session['bid_submitted'] = True
-		return render_template('demo.html', user=session['user'])
+		return render_template('index.html', user=session['user'])
 
 @app.route('/developers', methods=['GET', 'POST'])
 def developers():
