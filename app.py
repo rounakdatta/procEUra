@@ -12,6 +12,10 @@ def index():
 	else:
 		return render_template('index.html')
 
+@app.route('/were', methods=['GET', 'POST'])
+def were():
+	return render_template('were.html')
+
 @app.route('/demo', methods=['GET', 'POST'])
 def demo():
 	if request.method == 'POST' and 'cname' in request.form and 'camount' in request.form and 'copen' in request.form and 'cclose' in request.form and 'cduration' in request.form and 'clocation' in request.form:
