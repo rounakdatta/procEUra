@@ -235,93 +235,9 @@ font-family: 'Roboto';font-size: 15px;
 
 </div>
 </center>
-
+<br>
 {% if session['dealer_logged_in'] %}
-<center>
-  <!-- the right hand side elements-->
-  <div class="col-md-12">
-<br><hr><br>
-<div class="card">
-<div class="container">
-    <center>
-
-    	<h6>Create new Tender</h6>
-
-<form action="/demo" method=post>
-    <dl>
-        
-    <dd><div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Title&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-  </div>
-  <input type="text" class="form-control" name="cname" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Contract name title with NO SPACES">
-</div>
-    
-    </dd>
-
-    <dd><div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Amount</span>
-  </div>
-  <input type="number" class="form-control" name="camount" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Amount in NUMBERS">
-</div>
-    
-    </dd>
-
-    <br>
-<div class="row">
-<div class="col-md-6">
-		<dd>
-        <div class="docs-datepicker">
-          <div class="input-group">
-            <input type="text" class="form-control docs-date" name="copen" placeholder="Choose Contract Opening Date">
-            <div class="input-group-append">
-            </div>
-          </div>
-          <div class="docs-datepicker-container"></div>
-        </div>
-    </dd>
-  </div>
-
-<div class="col-md-6">
-    		<dd>
-        <div class="docs-datepicker">
-          <div class="input-group">
-            <input type="text" class="form-control docs-date" name="cclose" placeholder="Choose Contract Closing Date">
-            <div class="input-group-append">
-            </div>
-          </div>
-          <div class="docs-datepicker-container"></div>
-        </div>
-    </dd>
-  </div>
-</div>
-
-<dd><div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Duration</span>
-  </div>
-  <input type="number" class="form-control" name="cduration" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Duration in DAYS">
-</div>
-
-<dd><div class="input-group mb-3">
-  <div class="input-group-prepend">
-    <span class="input-group-text" id="inputGroup-sizing-default">Location</span>
-  </div>
-  <input type="text" class="form-control" name="clocation" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Location with NO SPACES">
-</div>
-    
-    </dd>
-
-    </dl>
-    <p><button type=submit class="btn btn-primary">Create Contract</button></p>
-</form>
-</center>
-</div>
-</div>
-
-</div>
-</center>
+<center><a href="/addTender"><button>Create New Tender</button></a></center>
 {% endif %}
 
 

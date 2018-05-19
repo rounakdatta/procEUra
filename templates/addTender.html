@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/nexttech-icon.png') }}">
+  <title>Add a Tender</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://fengyuanchen.github.io/datepicker/css/datepicker.css">
+  <!-- Material Design Bootstrap -->
+  <link href="{{ url_for('static', filename='css/mdb.min.css') }}" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="{{ url_for('static', filename='css/style.min.css') }}" rel="stylesheet">
+
+<style>
+
+p.dashed {border-style: dashed;}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 75%;
+    border-radius: 5px;
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+img {
+    border-radius: 5px 5px 0 0;
+}
+
+.container {
+    padding: 2px 16px;
+}
+</style>
+
+<style>
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+
+<style>
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+</style>
+
+<style>
+header {
+    font-family: 'Roboto';
+}
+</style>
+<style type="text/css">
+  .btn-round-lg{
+border-radius: 22.5px;
+font-family: 'Roboto';font-size: 15px;
+}
+</style>
+<link href='https://fonts.googleapis.com/css' rel='stylesheet'>
+
+<script src="./node_modules/web3/dist/web3.min.js"></script>
+
+</head>
+
+<body>
+
+  <!-- Navbar -->
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+        <div class="container">
+
+          <!-- Brand -->
+          <a class="navbar-brand" href="{{ url_for('index') }}">
+            <button type="button" class="btn btn-default btn-round-lg"><strong>Team Satoshi</strong></button>
+          </a>
+
+          <!-- Collapse -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Links -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Left -->
+            <ul class="navbar-nav mr-auto">
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('whitepaper') }}"><strong>Whitepaper</strong></a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('developers') }}"><strong>Developers</strong></a>
+              </li>
+            </ul>
+
+            <!-- Right -->
+            <ul class="navbar-nav nav-flex-icons">
+              <li class="nav-item">
+                <a href="https://www.facebook.com/NextTechSRM" class="nav-link" target="_blank">
+                  <i class="fa fa-facebook"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="https://twitter.com/nexttechlab" class="nav-link" target="_blank">
+                  <i class="fa fa-twitter"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="https://github.com/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io" class="nav-link"
+                  target="_blank">
+                  <i class="fa fa-github mr-2"></i>
+                </a>
+              </li>
+              {% if session['logged_in'] or session['dealer_logged_in'] %}
+              <li class="nav-item">
+                  <a href="{{ url_for('userpage') }}" class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>{{user}}
+                  </a>
+                </li>
+              {% else %}
+              <li class="nav-item">
+                  <a href="{{ url_for('login') }}" class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>Login
+                  </a>
+                </li>&nbsp;&nbsp;
+                <li class="nav-item">
+                  <a href="{{ url_for('register') }}" class="nav-link border border-light rounded">
+                    <i class="fa fa-user mr-2"></i>Sign Up
+                  </a>
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Navbar -->
+
+  <!--Main layout-->
+  <main class="mt-5 pt-4">
+    <div class="container">
+
+      <h3 class="my-5 h3 text-center">Add a Tender</h3>
+
+
+<center>
+
+<div class="row">
+<!-- the right hand side elements-->
+  <div class="col-md-12">
+
+<div class="card">
+<div class="container">
+    <center>
+<form action="/register" method=post>
+
+{% if session['logged_in'] %}
+<p>Recorded!</p>
+{% else %}
+<button type="button" class="btn btn-primary disabled">Tender Details</button>
+
+    <dl>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Organization</span>
+  </div>
+  <input type="text" class="form-control" id="org" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="cname">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Tender Ref no.</span>
+  </div>
+  <input type="text" class="form-control" id="tenderref" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="reg">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">TenderId</span>
+  </div>
+  <input type="text" class="form-control" id="tenderid" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="regadd">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Tender Open Status</span>
+  </div>
+  <input type="text" class="form-control" id="tenderstatus" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="biddertype">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Tender Category</span>
+  </div>
+  <input type="textr" class="form-control" id="tendercat" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="city">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Technical Details</span>
+  </div>
+  <input type="text" class="form-control" id="techdetails" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="state">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Finance Details</span>
+  </div>
+  <input type="text" class="form-control" id="financedetails" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="docs-datepicker">
+          <div class="input-group">
+            <input type="text" class="form-control docs-date" id="bidopen" placeholder="Choose Contract Opening Date">
+            <div class="input-group-append">
+            </div>
+          </div>
+          <div class="docs-datepicker-container"></div>
+        </div></dd>
+
+    <dd><div class="docs-datepicker">
+          <div class="input-group">
+            <input type="text" class="form-control docs-date" id="bidclose" placeholder="Choose Contract Closing Date">
+            <div class="input-group-append">
+            </div>
+          </div>
+          <div class="docs-datepicker-container"></div>
+        </div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Tender Value</span>
+  </div>
+  <input type="text" class="form-control" id="tenderval" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="legals">
+</div></dd>
+
+
+    </dl>
+   <button id="confirmtender" type="submit">Confirm</button>
+</form>
+<br><br>
+<button id="buttonadd">Add Tender (using MetaMask)</button>
+{% endif %}
+</center>
+</div>
+</div>
+
+</div>
+
+
+</center>
+
+    </div>
+  </main>
+  <!--Main layout-->
+
+<!--Footer-->
+  <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+
+    <!--Call to action-->
+    <div class="pt-4">
+      Transparency is open-source<br>
+      <a class="btn btn-outline-white" href="https://github.com/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io" target="_blank" role="button">View Code
+        <i class="fa fa-github-alt ml-2"></i>
+      </a>
+    </div>
+    <!--/.Call to action-->
+
+    <hr class="my-4">
+
+    <!-- Social icons -->
+    <div class="pb-4">
+      <a href="https://www.facebook.com/mdbootstrap" target="_blank">
+        <i class="fa fa-facebook mr-3"></i>
+      </a>
+
+      <a href="https://twitter.com/MDBootstrap" target="_blank">
+        <i class="fa fa-twitter mr-3"></i>
+      </a>
+
+      <a href="https://www.youtube.com/watch?v=7MUISDJ5ZZ4" target="_blank">
+        <i class="fa fa-youtube mr-3"></i>
+      </a>
+
+      <a href="https://plus.google.com/u/0/b/107863090883699620484" target="_blank">
+        <i class="fa fa-google-plus mr-3"></i>
+      </a>
+
+      <a href="https://dribbble.com/mdbootstrap" target="_blank">
+        <i class="fa fa-dribbble mr-3"></i>
+      </a>
+
+      <a href="https://pinterest.com/mdbootstrap" target="_blank">
+        <i class="fa fa-pinterest mr-3"></i>
+      </a>
+
+      <a href="https://github.com/mdbootstrap/bootstrap-material-design" target="_blank">
+        <i class="fa fa-github mr-3"></i>
+      </a>
+
+      <a href="http://codepen.io/mdbootstrap/" target="_blank">
+        <i class="fa fa-codepen mr-3"></i>
+      </a>
+    </div>
+    <!-- Social icons -->
+
+    <!--Copyright-->
+    <div class="footer-copyright py-3">
+      © 2018 Copyright:
+      <a href="https://nextech.io" target="_blank"> nextech.io </a>
+    </div>
+    <!--/.Copyright-->
+
+  </footer>
+  <!--/.Footer-->
+
+  <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script>
+     if(typeof web3 !== 'undefined')
+     {
+       web3 = new Web3(web3.currentProvider);
+     }
+     else
+     {
+       web3 = new Web3(new Web3.providers.HttpProvider("http://teamsatoshi.pythonanywhere.com/addTender"));
+     }
+     web3.version.getNetwork((err, netId) => {
+switch (netId) {
+  case "1":
+    console.log('This is mainnet')
+    break
+  case "2":
+    console.log('This is the deprecated Morden test network.')
+    break
+  case "3":
+    console.log('This is the ropsten test network.')
+    break
+  case "4":
+    console.log('This is the Rinkeby test network.')
+    break
+  case "42":
+    console.log('This is the Kovan test network.')
+    break
+  default:
+    console.log('This is an unknown network.')
+}
+})
+
+     web3.eth.defaultAccount=web3.eth.accounts[0];
+     var testContract = web3.eth.contract([
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tender_id",
+				"type": "string"
+			}
+		],
+		"name": "selectrandomselector",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "bidderid",
+				"type": "string"
+			}
+		],
+		"name": "show_bidder_rating",
+		"outputs": [
+			{
+				"name": "rating",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tender_uid",
+				"type": "string"
+			},
+			{
+				"name": "bidder_reg_no",
+				"type": "string"
+			},
+			{
+				"name": "bid_det",
+				"type": "uint256"
+			}
+		],
+		"name": "bid_to_tender",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "_oraclizeID",
+				"type": "bytes32"
+			},
+			{
+				"name": "_result",
+				"type": "string"
+			}
+		],
+		"name": "__callback",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "myid",
+				"type": "bytes32"
+			},
+			{
+				"name": "result",
+				"type": "string"
+			},
+			{
+				"name": "proof",
+				"type": "bytes"
+			}
+		],
+		"name": "__callback",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tender_id",
+				"type": "string"
+			}
+		],
+		"name": "checkwinner",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "tenderid",
+				"type": "string"
+			}
+		],
+		"name": "displaywinner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "result",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "org",
+				"type": "string"
+			},
+			{
+				"name": "tenderRefNo",
+				"type": "string"
+			},
+			{
+				"name": "tenderID",
+				"type": "string"
+			},
+			{
+				"name": "tenderOpenStatus",
+				"type": "bool"
+			},
+			{
+				"name": "tenderCategory",
+				"type": "string"
+			},
+			{
+				"name": "techDoc",
+				"type": "string"
+			},
+			{
+				"name": "financeDoc",
+				"type": "string"
+			},
+			{
+				"name": "bidOpen",
+				"type": "string"
+			},
+			{
+				"name": "bidClose",
+				"type": "string"
+			},
+			{
+				"name": "tenderVal",
+				"type": "uint256"
+			}
+		],
+		"name": "addTender",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "cname",
+				"type": "string"
+			},
+			{
+				"name": "reg",
+				"type": "string"
+			},
+			{
+				"name": "regadd",
+				"type": "string"
+			},
+			{
+				"name": "biddertype",
+				"type": "string"
+			},
+			{
+				"name": "city",
+				"type": "string"
+			},
+			{
+				"name": "state",
+				"type": "string"
+			},
+			{
+				"name": "post",
+				"type": "uint256"
+			},
+			{
+				"name": "pan",
+				"type": "string"
+			},
+			{
+				"name": "nature",
+				"type": "string"
+			},
+			{
+				"name": "legals",
+				"type": "string"
+			},
+			{
+				"name": "ccat",
+				"type": "string"
+			}
+		],
+		"name": "bidderEnrollment",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [],
+		"name": "getRandom",
+		"outputs": [],
+		"payable": true,
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "regno",
+				"type": "uint256"
+			}
+		],
+		"name": "add_selector",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "oraclizeID",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tenderid",
+				"type": "string"
+			},
+			{
+				"name": "bidder_reg_no",
+				"type": "string"
+			}
+		],
+		"name": "opinion",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "selectorarr",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "rep_int",
+				"type": "uint256"
+			},
+			{
+				"name": "bidder_id",
+				"type": "string"
+			}
+		],
+		"name": "give_vote",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "selectedselectors",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "tender_id",
+				"type": "string"
+			}
+		],
+		"name": "disselselectors",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	}
+]);
+var test = testContract.at("0xff227ef88df960b8d25145b774df9098b7741149");
+
+$("#buttonreg").click(function() {
+  test.addTender($("#org").val(),$("#tenderref").val(),$("#tenderid").val(),$("#tenderstatus").val(),$("#tendercat").val(),$("#techdetails").val(),$("#financedetails").val(),$("#bidopen").val()
+  ,$("#bidclose").val(),$("#tenderval").val(),(error,result) => (console.log(result)));
+});
+</script>
+  <!-- JQuery -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/popper.min.js') }}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="{{ url_for('static', filename='js/mdb.min.js') }}"></script>
+  <script type="text/javascript" src="https://fengyuanchen.github.io/datepicker/js/datepicker.js"></script>
+<script type="text/javascript" src="https://fengyuanchen.github.io/datepicker/js/datepicker.en-US.js"></script>
+<script type="text/javascript" src="https://fengyuanchen.github.io/datepicker/js/main.js"></script>
+  <!-- Initializations -->
+  <script type="text/javascript">
+    // Animations initialization
+    new WOW().init();
+  </script>
+</body>
+
+</html>

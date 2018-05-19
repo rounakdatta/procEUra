@@ -12,10 +12,6 @@ def index():
 	else:
 		return render_template('index.html')
 
-@app.route('/were', methods=['GET', 'POST'])
-def were():
-	return render_template('were.html')
-
 @app.route('/demo', methods=['GET', 'POST'])
 def demo():
 	if request.method == 'POST' and 'cname' in request.form and 'camount' in request.form and 'copen' in request.form and 'cclose' in request.form and 'cduration' in request.form and 'clocation' in request.form:
@@ -27,7 +23,7 @@ def demo():
 	all_contracts = []
 	with open(root_dir + "/demo/contracts.txt", "r") as reader:
 		for line in reader:
-			all_contracts.append(line.split())
+			all_contracts.append(line.split()[:6])
 
 	if session.get('logged_in') or session.get('dealer_logged_in'):
 		return render_template('demo.html', all_contracts=all_contracts, user=session['user'])
@@ -48,7 +44,7 @@ def this_tender(tender_title):
 		bids = f.read()
 		bidsearch = re.search(session['user'], bids)
 		if bidsearch is not None:
-			start = bidsearch.start() + len(session['user']) + 1 
+			start = bidsearch.start() + len(session['user']) + 1
 			calcbid = bids[start:start + 5]
 			session['bid_submitted'] = True
 		else:
@@ -84,6 +80,19 @@ def userpage():
 	else:
 		return render_template('index.html')
 
+@app.route('/addTender', methods=['GET', 'POST'])
+def addTender():
+	if request.method == 'POST':
+		with open(root_dir + "/demo/contracts.txt", "a") as demo:
+			demo.write(request.form['org'] + " " + request.form['tenderref'] + " " + request.form['tenderid'] + " " + request.form['tenderstatus'] + " " + request.form['tendercat'] + " " + request.form['techdetails'] + " " + request.form['financedetails'] + " " + request.form['bidopen'] + " " + request.form['bidclose'] + " " + request.form['tenderval'] + "\n")
+			newfile = open(root_dir + "/tenders/" + request.form['tenderref'] + ".txt", "w+")
+			newfile.close()
+
+	if session.get('dealer_logged_in'):
+		return render_template('addTender.html', username=session['user'])
+	else:
+		return render_template('index.html')
+
 @app.route('/portal', methods=['GET', 'POST'])
 def portal():
 	if session.get('logged_in') or session.get('dealer_logged_in'):
@@ -105,7 +114,7 @@ def login():
 		creds = f.read()
 		f.close()
 
-		start = (re.search(request.form['dealerusername'], creds).start() + len(request.form['dealerusername'])) + 1 
+		start = (re.search(request.form['dealerusername'], creds).start() + len(request.form['dealerusername'])) + 1
 		calcpwd = creds[start:start + len(request.form['dealerpassword'])]
 		if request.form['dealerusername'] in creds and request.form['dealerpassword'] == calcpwd :
 			session['dealer_logged_in'] = True
@@ -119,7 +128,7 @@ def login():
 		creds = f.read()
 		f.close()
 
-		start = (re.search(request.form['contractorusername'], creds).start() + len(request.form['contractorusername'])) + 1 
+		start = (re.search(request.form['contractorusername'], creds).start() + len(request.form['contractorusername'])) + 1
 		calcpwd = creds[start:start + len(request.form['contractorpassword'])]
 		if request.form['contractorusername'] in creds and request.form['contractorpassword'] == calcpwd :
 			session['logged_in'] = True
@@ -155,7 +164,7 @@ def register():
 
 			return render_template('registerdetails.html')
 	else:
-		flash('wrong password!')	
+		flash('wrong password!')
 
 	return render_template('register.html')
 
