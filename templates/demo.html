@@ -95,11 +95,13 @@ font-family: 'Roboto';font-size: 15px;
 }
 </style>
 <link href='https://fonts.googleapis.com/css' rel='stylesheet'>
+<script src="./node_modules/web3/dist/web3.min.js"></script>
 
 </head>
 
 <body>
 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <!-- Navbar -->
       <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
         <div class="container">
@@ -178,6 +180,8 @@ font-family: 'Roboto';font-size: 15px;
 
 <center>
 
+    <div id= "box"></div>
+
 <div class="row">
 
 
@@ -214,19 +218,26 @@ font-family: 'Roboto';font-size: 15px;
       </div>
       </p>
     </li>
-{% for contract in all_contracts %}
+
   <li class="list-group-item">
     <p>
       <div class="row">
-    {% for comp in contract %}
     <div class="col-md-2">
-    <a href="/tender/{{contract[0]}}">{{comp}}</a>
+
+    <!-- make the getter function call here -->
   </div>
-    {% endfor %}
+  <div class="col-md-2"><div id="p1"> yourdata </div></div>
+  <div class="col-md-2"><div id="p2"> yourdata </div></div>
+  <div class="col-md-2"><div id="p3"> yourdata </div></div>
+  <div class="col-md-2"><div id="p4"> yourdata </div></div>
+  <div class="col-md-2"><div id="p5"> yourdata </div></div>
+
+  <!-- print the values here-->
+
   </div>
     </p>
   </li>
-{% endfor %}
+
 </ul>
 <br>
 </center>
@@ -308,6 +319,556 @@ font-family: 'Roboto';font-size: 15px;
   <!--/.Footer-->
 
   <!-- SCRIPTS -->
+  <script>
+     if(typeof web3 !== 'undefined')
+     {
+       web3 = new Web3(web3.currentProvider);
+     }
+     else
+     {
+       web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:3000"));
+     }
+     web3.version.getNetwork((err, netId) => {
+switch (netId) {
+  case "1":
+    console.log('This is mainnet')
+    break
+  case "2":
+    console.log('This is the deprecated Morden test network.')
+    break
+  case "3":
+    console.log('This is the ropsten test network.')
+    break
+  case "4":
+    console.log('This is the Rinkeby test network.')
+    break
+  case "42":
+    console.log('This is the Kovan test network.')
+    break
+  default:
+    console.log('This is an unknown network.')
+}
+})
+
+     web3.eth.defaultAccount=web3.eth.accounts[0];
+     var testContract = web3.eth.contract([
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_oraclizeID",
+        "type": "bytes32"
+      },
+      {
+        "name": "_result",
+        "type": "string"
+      }
+    ],
+    "name": "__callback",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "myid",
+        "type": "bytes32"
+      },
+      {
+        "name": "result",
+        "type": "string"
+      },
+      {
+        "name": "proof",
+        "type": "bytes"
+      }
+    ],
+    "name": "__callback",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "regno",
+        "type": "uint256"
+      }
+    ],
+    "name": "add_selector",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "org",
+        "type": "string"
+      },
+      {
+        "name": "tenderRefNo",
+        "type": "string"
+      },
+      {
+        "name": "tenderID",
+        "type": "uint256"
+      },
+      {
+        "name": "tenderOpenStatus",
+        "type": "bool"
+      },
+      {
+        "name": "tenderCategory",
+        "type": "string"
+      },
+      {
+        "name": "techDoc",
+        "type": "string"
+      },
+      {
+        "name": "financeDoc",
+        "type": "string"
+      },
+      {
+        "name": "bidOpen",
+        "type": "string"
+      },
+      {
+        "name": "bidClose",
+        "type": "string"
+      },
+      {
+        "name": "tenderVal",
+        "type": "uint256"
+      }
+    ],
+    "name": "addTender",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "tender_uid",
+        "type": "uint256"
+      },
+      {
+        "name": "bid_det",
+        "type": "uint256"
+      }
+    ],
+    "name": "bid_to_tender",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "cname",
+        "type": "string"
+      },
+      {
+        "name": "reg",
+        "type": "string"
+      },
+      {
+        "name": "regadd",
+        "type": "string"
+      },
+      {
+        "name": "biddertype",
+        "type": "string"
+      },
+      {
+        "name": "city",
+        "type": "string"
+      },
+      {
+        "name": "state",
+        "type": "string"
+      },
+      {
+        "name": "post",
+        "type": "uint256"
+      },
+      {
+        "name": "pan",
+        "type": "string"
+      },
+      {
+        "name": "nature",
+        "type": "string"
+      },
+      {
+        "name": "legals",
+        "type": "string"
+      },
+      {
+        "name": "ccat",
+        "type": "string"
+      }
+    ],
+    "name": "bidderEnrollment",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "tender_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "checkwinner",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "getRandom",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "rep_int",
+        "type": "uint256"
+      },
+      {
+        "name": "bidder_id",
+        "type": "string"
+      }
+    ],
+    "name": "give_vote",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "tenderid",
+        "type": "uint256"
+      },
+      {
+        "name": "bidder_reg_no",
+        "type": "string"
+      }
+    ],
+    "name": "opinion",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "tender_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "selectrandomselector",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "tenderid",
+        "type": "uint256"
+      }
+    ],
+    "name": "displaywinner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "tender_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "disselselectors",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "gettenderarr",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "oraclizeID",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "result",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "selectedselectors",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "selectorarr",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "bidderid",
+        "type": "string"
+      }
+    ],
+    "name": "show_bidder_rating",
+    "outputs": [
+      {
+        "name": "rating",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "tenderID",
+        "type": "uint256"
+      }
+    ],
+    "name": "showtenderdetails",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "bool"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "tenderID",
+        "type": "uint256"
+      }
+    ],
+    "name": "showtenderdetails2",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+]);
+var test= testContract.at("0x4796fed1642bb5264c70984a9a6a1fda5a032c06");
+
+test.gettenderarr(function(error,result1)
+{
+  if(!error)
+  {
+console.log(result1);
+
+    for (var i = 0; i <= result1.length; i++)
+    {
+
+     test.showtenderdetails(result1[i],function(error,result)
+     {
+  if(!error)
+        {
+      console.log(result);
+
+       var html = "<br><br><table border='1|1'>";
+        for (var j = 0; j < result.length; j++)
+            {
+        html+="<tr>";
+        html+="<td>"+result[j]+"</td>";
+
+
+        html+="</tr>";
+
+            }
+    html+="</table>";
+document.getElementById("box").innerHTML += html;
+
+
+    $("#p1").html(result[0]);
+    $("#p2").html(result[1]);
+    $("#p3").html(result[2]);
+    $("#p4").html(result[3]);
+    $("#p5").html(result[4]);
+        }
+  else
+        {
+    console.log(error);
+        }
+}); // show tenderdetails close
+
+  } //for loop close
+  } // if close
+  else
+  {
+    console.log(error);
+  }
+});
+
+
+
+</script>
   <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://fengyuanchen.github.io/datepicker/js/datepicker.js"></script>

@@ -1,9 +1,20 @@
 from flask import Flask, render_template, request, send_file, flash, redirect, session, abort
 import re
+import pyrebase
 
 app = Flask(__name__)
 
 root_dir = '.'
+
+config = {
+  "apiKey": "AIzaSyDhyp_l-BjhR3WJq6AsOu64cFf96sOg4qw",
+  "authDomain": "bsic-ff4c8.firebaseapp.com",
+  "databaseURL": "https://bsic-ff4c8.firebaseio.com",
+  "storageBucket": "bsic-ff4c8.appspot.com",
+}
+
+firebase = pyrebase.initialize_app(config)
+db = firebase.database()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -110,32 +121,20 @@ def whitepaper():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
 	if request.method == 'POST' and 'dealerusername' in request.form and 'dealerpassword' in request.form:
-		f = open(root_dir + "/users/dealers/dealers.txt", "r")
-		creds = f.read()
-		f.close()
-
-		start = (re.search(request.form['dealerusername'], creds).start() + len(request.form['dealerusername'])) + 1
-		calcpwd = creds[start:start + len(request.form['dealerpassword'])]
-		if request.form['dealerusername'] in creds and request.form['dealerpassword'] == calcpwd :
-			session['dealer_logged_in'] = True
-			session['user'] = request.form['dealerusername']
-			return render_template('index.html', user=session['user'])
-		else:
-			flash('wrong password!')
+		accs = db.child("accounts").child('supplier').get()
+		for idx in accs.each():
+			if(idx.val()[request.form['dealerusername']]):
+				session['logged_in'] = True
+				session['user'] = request.form['dealerusername']
+				return render_template('index.html', user=session['user'])
 
 	if request.method == 'POST' and 'contractorusername' in request.form and 'contractorpassword' in request.form:
-		f = open(root_dir + "/users/contractors/contractors.txt", "r")
-		creds = f.read()
-		f.close()
-
-		start = (re.search(request.form['contractorusername'], creds).start() + len(request.form['contractorusername'])) + 1
-		calcpwd = creds[start:start + len(request.form['contractorpassword'])]
-		if request.form['contractorusername'] in creds and request.form['contractorpassword'] == calcpwd :
-			session['logged_in'] = True
-			session['user'] = request.form['contractorusername']
-			return render_template('index.html', user=session['user'])
-		else:
-			flash('wrong password!')
+		accs = db.child("accounts").child('clients').get()
+		for idx in accs.each():
+			if(idx.val()[request.form['contractorusername']]):
+				session['logged_in'] = True
+				session['user'] = request.form['contractorusername']
+				return render_template('index.html', user=session['user'])
 
 	return render_template('login.html')
 
@@ -151,18 +150,18 @@ def register():
 		return render_template('register.html', user=session['user'])
 
 	if request.method == 'POST' and 'contractorusername' in request.form and 'contractorpassword' in request.form:
-			with open(root_dir + "/users/contractors/contractors.txt", "a") as bidder:
-				bidder.write(request.form['contractorusername'] + "-" + request.form['contractorpassword'] + "\n")
-
-			return render_template('registerdetails.html')
+		db.child("accounts").child("clients")
+		data = {request.form['contractorusername'] : request.form['contractorpassword']}
+		db.push(data)
+		return render_template('registerdetails.html')
 	else:
 		flash('wrong password!')
 
 	if request.method == 'POST' and 'dealerusername' in request.form and 'dealerpassword' in request.form:
-			with open(root_dir + "/users/dealers/dealers.txt", "a") as bidder:
-				bidder.write(request.form['dealerusername'] + "-" + request.form['dealerpassword'] + "\n")
-
-			return render_template('registerdetails.html')
+		db.child("accounts").child("supplier")
+		dat = {request.form['dealerusername'] : request.form['dealerpassword']}
+		db.push(dat)
+		return render_template('registerdetails.html')
 	else:
 		flash('wrong password!')
 
