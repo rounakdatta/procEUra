@@ -179,20 +179,10 @@ font-family: 'Roboto';font-size: 15px;
       <h3 class="my-5 h3 text-center">Welcome to the DEMO e-Procurement Portal!</h3>
 
 <center>
-
-    <div id= "box"></div>
-
-<div class="row">
-
-
-<div class="col-md-12">
-
 <div class="card">
 <div class="container">
-    <center>
-      <br>
-
-  <ul class="list-group">
+    <br>
+<div id="tbox">
     <li class="list-group-item">
       <p>
         <div class="row">
@@ -215,36 +205,14 @@ font-family: 'Roboto';font-size: 15px;
             <b>Location</b>
           </div>
         </div>
-      </div>
       </p>
     </li>
-
-  <li class="list-group-item">
-    <p>
-      <div class="row">
-    <div class="col-md-2">
-
-    <!-- make the getter function call here -->
-  </div>
-  <div class="col-md-2"><div id="p1"> yourdata </div></div>
-  <div class="col-md-2"><div id="p2"> yourdata </div></div>
-  <div class="col-md-2"><div id="p3"> yourdata </div></div>
-  <div class="col-md-2"><div id="p4"> yourdata </div></div>
-  <div class="col-md-2"><div id="p5"> yourdata </div></div>
-
-  <!-- print the values here-->
-
-  </div>
-    </p>
-  </li>
-
-</ul>
+</div>
+<div id= "box"></div>
 <br>
-</center>
-</div>
-</div>
+</div></div>
 
-</div>
+
 </center>
 <br>
 {% if session['dealer_logged_in'] %}
@@ -832,17 +800,15 @@ console.log(result1);
         {
       console.log(result);
 
-       var html = "<br><br><table border='1|1'>";
+       var html = "<li class=\"list-group-item\"><p><div class=\"row\">";
         for (var j = 0; j < result.length; j++)
             {
-        html+="<tr>";
-        html+="<td>"+result[j]+"</td>";
-
-
-        html+="</tr>";
+        html+="<div class=\"col-md-2\">"+result[j]+"</div>";
 
             }
-    html+="</table>";
+
+                    html+="</div></p></li>";
+
 document.getElementById("box").innerHTML += html;
 
 
