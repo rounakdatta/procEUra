@@ -390,12 +390,16 @@ switch (netId) {
 		"constant": false,
 		"inputs": [
 			{
-				"name": "_oraclizeID",
+				"name": "myid",
 				"type": "bytes32"
 			},
 			{
-				"name": "_result",
+				"name": "result",
 				"type": "string"
+			},
+			{
+				"name": "proof",
+				"type": "bytes"
 			}
 		],
 		"name": "__callback",
@@ -408,16 +412,12 @@ switch (netId) {
 		"constant": false,
 		"inputs": [
 			{
-				"name": "myid",
+				"name": "_oraclizeID",
 				"type": "bytes32"
 			},
 			{
-				"name": "result",
+				"name": "_result",
 				"type": "string"
-			},
-			{
-				"name": "proof",
-				"type": "bytes"
 			}
 		],
 		"name": "__callback",
@@ -517,7 +517,7 @@ switch (netId) {
 			},
 			{
 				"name": "reg",
-				"type": "string"
+				"type": "uint256"
 			},
 			{
 				"name": "regadd",
@@ -594,7 +594,7 @@ switch (netId) {
 			},
 			{
 				"name": "bidder_id",
-				"type": "string"
+				"type": "uint256"
 			}
 		],
 		"name": "give_vote",
@@ -612,7 +612,7 @@ switch (netId) {
 			},
 			{
 				"name": "bidder_reg_no",
-				"type": "string"
+				"type": "uint256"
 			}
 		],
 		"name": "opinion",
@@ -649,11 +649,30 @@ switch (netId) {
 				"type": "uint256"
 			}
 		],
+		"name": "displaybidders",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "tenderid",
+				"type": "uint256"
+			}
+		],
 		"name": "displaywinner",
 		"outputs": [
 			{
 				"name": "",
-				"type": "string"
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -764,7 +783,7 @@ switch (netId) {
 		"inputs": [
 			{
 				"name": "bidderid",
-				"type": "string"
+				"type": "uint256"
 			}
 		],
 		"name": "show_bidder_rating",
@@ -849,7 +868,7 @@ switch (netId) {
 		"type": "function"
 	}
 ]);
-var test = testContract.at("0x4796fed1642bb5264c70984a9a6a1fda5a032c06");
+var test = testContract.at("0x4a77b741b10c507a798b818fc5c3dea71744d741");
 
 $("#buttonreg").click(function() {
   test.addTender($("#org").val(),$("#tenderref").val(),$("#tenderid").val(),$("#tenderstatus").val(),$("#tendercat").val(),$("#techdetails").val(),$("#financedetails").val(),$("#bidopen").val()
