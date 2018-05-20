@@ -390,61 +390,6 @@ switch (netId) {
 		"constant": false,
 		"inputs": [
 			{
-				"name": "tender_id",
-				"type": "string"
-			}
-		],
-		"name": "selectrandomselector",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "bidderid",
-				"type": "string"
-			}
-		],
-		"name": "show_bidder_rating",
-		"outputs": [
-			{
-				"name": "rating",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "tender_uid",
-				"type": "string"
-			},
-			{
-				"name": "bidder_reg_no",
-				"type": "string"
-			},
-			{
-				"name": "bid_det",
-				"type": "uint256"
-			}
-		],
-		"name": "bid_to_tender",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
 				"name": "_oraclizeID",
 				"type": "bytes32"
 			},
@@ -485,47 +430,14 @@ switch (netId) {
 		"constant": false,
 		"inputs": [
 			{
-				"name": "tender_id",
-				"type": "string"
-			}
-		],
-		"name": "checkwinner",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "tenderid",
-				"type": "string"
-			}
-		],
-		"name": "displaywinner",
-		"outputs": [
-			{
-				"name": "",
-				"type": "string"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "result",
-		"outputs": [
-			{
-				"name": "",
+				"name": "regno",
 				"type": "uint256"
 			}
 		],
+		"name": "add_selector",
+		"outputs": [],
 		"payable": false,
-		"stateMutability": "view",
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -541,7 +453,7 @@ switch (netId) {
 			},
 			{
 				"name": "tenderID",
-				"type": "string"
+				"type": "uint256"
 			},
 			{
 				"name": "tenderOpenStatus",
@@ -573,6 +485,24 @@ switch (netId) {
 			}
 		],
 		"name": "addTender",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tender_uid",
+				"type": "uint256"
+			},
+			{
+				"name": "bid_det",
+				"type": "uint256"
+			}
+		],
+		"name": "bid_to_tender",
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
@@ -634,76 +564,25 @@ switch (netId) {
 	},
 	{
 		"constant": false,
+		"inputs": [
+			{
+				"name": "tender_id",
+				"type": "uint256"
+			}
+		],
+		"name": "checkwinner",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
 		"inputs": [],
 		"name": "getRandom",
 		"outputs": [],
 		"payable": true,
 		"stateMutability": "payable",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "regno",
-				"type": "uint256"
-			}
-		],
-		"name": "add_selector",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [],
-		"name": "oraclizeID",
-		"outputs": [
-			{
-				"name": "",
-				"type": "bytes32"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
-		"type": "function"
-	},
-	{
-		"constant": false,
-		"inputs": [
-			{
-				"name": "tenderid",
-				"type": "string"
-			},
-			{
-				"name": "bidder_reg_no",
-				"type": "string"
-			}
-		],
-		"name": "opinion",
-		"outputs": [],
-		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "function"
-	},
-	{
-		"constant": true,
-		"inputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"name": "selectorarr",
-		"outputs": [
-			{
-				"name": "",
-				"type": "uint256"
-			}
-		],
-		"payable": false,
-		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -722,6 +601,124 @@ switch (netId) {
 		"outputs": [],
 		"payable": false,
 		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tenderid",
+				"type": "uint256"
+			},
+			{
+				"name": "bidder_reg_no",
+				"type": "string"
+			}
+		],
+		"name": "opinion",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"constant": false,
+		"inputs": [
+			{
+				"name": "tender_id",
+				"type": "uint256"
+			}
+		],
+		"name": "selectrandomselector",
+		"outputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"payable": false,
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "tenderid",
+				"type": "uint256"
+			}
+		],
+		"name": "displaywinner",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "tender_id",
+				"type": "uint256"
+			}
+		],
+		"name": "disselselectors",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "gettenderarr",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256[]"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "oraclizeID",
+		"outputs": [
+			{
+				"name": "",
+				"type": "bytes32"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [],
+		"name": "result",
+		"outputs": [
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -747,15 +744,15 @@ switch (netId) {
 		"constant": true,
 		"inputs": [
 			{
-				"name": "tender_id",
-				"type": "string"
+				"name": "",
+				"type": "uint256"
 			}
 		],
-		"name": "disselselectors",
+		"name": "selectorarr",
 		"outputs": [
 			{
 				"name": "",
-				"type": "uint256[]"
+				"type": "uint256"
 			}
 		],
 		"payable": false,
@@ -763,13 +760,96 @@ switch (netId) {
 		"type": "function"
 	},
 	{
-		"inputs": [],
+		"constant": true,
+		"inputs": [
+			{
+				"name": "bidderid",
+				"type": "string"
+			}
+		],
+		"name": "show_bidder_rating",
+		"outputs": [
+			{
+				"name": "rating",
+				"type": "uint256"
+			}
+		],
 		"payable": false,
-		"stateMutability": "nonpayable",
-		"type": "constructor"
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "tenderID",
+				"type": "uint256"
+			}
+		],
+		"name": "showtenderdetails",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			},
+			{
+				"name": "",
+				"type": "bool"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"constant": true,
+		"inputs": [
+			{
+				"name": "tenderID",
+				"type": "uint256"
+			}
+		],
+		"name": "showtenderdetails2",
+		"outputs": [
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "string"
+			},
+			{
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"payable": false,
+		"stateMutability": "view",
+		"type": "function"
 	}
 ]);
-var test = testContract.at("0xff227ef88df960b8d25145b774df9098b7741149");
+var test = testContract.at("0x4796fed1642bb5264c70984a9a6a1fda5a032c06");
 
 $("#buttonreg").click(function() {
   test.addTender($("#org").val(),$("#tenderref").val(),$("#tenderid").val(),$("#tenderstatus").val(),$("#tendercat").val(),$("#techdetails").val(),$("#financedetails").val(),$("#bidopen").val()
