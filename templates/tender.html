@@ -56,6 +56,8 @@ font-family: 'Roboto';font-size: 15px;
 </style>
 <link href='https://fonts.googleapis.com/css' rel='stylesheet'>
 
+<script src="./node_modules/web3/dist/web3.min.js"></script>
+
 </head>
 
 <body>
@@ -138,60 +140,60 @@ font-family: 'Roboto';font-size: 15px;
 
      <table id="customers">
     <tr>
-    <th>Title</th>
+    <th>bidclose</th>
     <td>{{data[0]}}</td>
-    <th>Bid Opening Date</th>
-    <td>{{data[2]}}</td>
-    <th>Bid Opening Date</th>
-    <td>{{data[3]}}</td>
-  </tr>
-  <tr>
-    <th>Work Description</th>
-    <td>{{data[4]}}</td>
-    <th>Parameter</th>
-    <td>{{data[4]}}</td>
-    <th>Parameter</th>
-    <td>{{data[4]}}</td>
-  </tr>
-  <tr>
-    <th>Independent External Monitor</th>
-    <td>{{data[4]}}</td>
-    <th>Parameter</th>
-    <td>{{data[4]}}</td>
-    <th>Parameter</th>
-    <td>{{data[4]}}</td>
-  </tr>
-    <tr>
-    <th>Tender Value in ₹ </th>
+    <th>bidopen</th>
     <td>{{data[1]}}</td>
-    <th>Product Category</th>
+    <th>financedetails</th>
+    <td>{{data[2]}}</td>
+  </tr>
+  <tr>
+    <th>org</th>
+    <td>{{data[3]}}</td>
+    <th>techdetails</th>
     <td>{{data[4]}}</td>
-    <th>Sub category</th>
-    <td>{{data[4]}}</td>
+    <th>tendercat</th>
+    <td>{{data[5]}}</td>
+  </tr>
+  <tr>
+    <th>tenderid</th>
+    <td>{{data[6]}}</td>
+    <th>tenderref</th>
+    <td>{{data[7]}}</td>
+    <th>tenderstatus</th>
+    <td>{{data[8]}}</td>
   </tr>
     <tr>
-    <th>Contract Type</th>
-    <td>Tender</td>
-    <th>Bid Validity(Days)</th>
-    <td>{{data[4]}}</td>
-    <th>Period Of Work(Days)</th>
-    <td>{{data[4]}}</td>
+    <th>tenderval</th>
+    <td>{{data[9]}}</td>
+    <th>dummy</th>
+    <td>dummy</td>
+    <th>dummy</th>
+    <td>dummy</td>
   </tr>
     <tr>
-    <th>Location</th>
-    <td>{{data[4]}}</td>
-    <th>Pincode</th>
-    <td>{{data[4]}}</td>
-    <th>Pre Bid Meeting Place</th>
-    <td>{{data[4]}}</td>
+    <th>dummy</th>
+    <td>dummy</td>
+    <th>dummy</th>
+    <td>dummy</td>
+    <th>dummy</th>
+    <td>dummy</td>
   </tr>
     <tr>
-    <th>Pre Bid Meeting Address</th>
-    <td>{{data[4]}}</td>
-    <th>Pre Bid Meeting Date</th>
-    <td>{{data[4]}}</td>
-    <th>Bid Opening Place</th>
-    <td>{{data[4]}}</td>
+    <th>dummy</th>
+    <td>dummy</td>
+    <th>dummy</th>
+    <td>dummy</td>
+    <th>dummy</th>
+    <td>dummy</td>
+  </tr>
+    <tr>
+    <th>dummy</th>
+    <td>dummy</td>
+    <th>dummy</th>
+    <td>dummy</td>
+    <th>dummy</th>
+    <td>dummy</td>
   </tr>
 </table>
 
@@ -351,15 +353,13 @@ font-family: 'Roboto';font-size: 15px;
   <ul class="list-group">
 {% for bid in all_my_bids %}
   <li class="list-group-item">
-  	{{bid}}       
+    {{bid}}
 
   </li>
 {% endfor %}
 </ul>
 
-  	<a href="{{ url_for('portal') }}" class="btn btn-info">Close Tender
-                  <i class="fa fa-neuter ml-2"></i>
-                </a>
+    <button id="close">Close Tender</button>
 </center>
 
 </div>
@@ -377,19 +377,19 @@ font-family: 'Roboto';font-size: 15px;
 <div class="card">
 <div class="container">
     <center>
-        <form action="/tender" method=post>
+
     <dl>
-        
+
     <dt><label for="id">Bid Amount</label>
-    <dd><input id="id" name="bidamount" type="number" min="10000" max="99999" value="">
-    
+    <dd><input id="bidamt" name="bidamount" type="number" min="10000" max="99999" value="">
+
     </dd>
 
     </dl>
 
-    <input type="checkbox" name="checkbox" value="agree"  >&nbsp;I hereby agree to the T&C<br>
-    <p><button type="submit" class="btn btn-primary" onclick="if(!this.form.checkbox.checked){alert('You must agree to the terms first.');return false}" >Make Bid</button></p>
-</form>
+    <input type="checkbox" name="checkbox" value="agree"  >&nbsp;I hereby agree to the Terms <br>
+    <p><button id="bid" type="submit" class="btn btn-primary" onclick="if(!this.form.checkbox.checked){alert('You must agree to the terms first.');return false}" >Make Bid</button></p>
+
 </center>
 </div>
 </div>
@@ -464,6 +464,534 @@ font-family: 'Roboto';font-size: 15px;
   <!--/.Footer-->
 
   <!-- SCRIPTS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+  <script>
+     if(typeof web3 !== 'undefined')
+     {
+       web3 = new Web3(web3.currentProvider);
+     }
+     else
+     {
+       web3 = new Web3(new Web3.providers.HttpProvider("http://teamsatoshi.pythonanywhere.com/tender/" + {{data[3]}}));
+     }
+     web3.version.getNetwork((err, netId) => {
+switch (netId) {
+  case "1":
+    console.log('This is mainnet')
+    break
+  case "2":
+    console.log('This is the deprecated Morden test network.')
+    break
+  case "3":
+    console.log('This is the ropsten test network.')
+    break
+  case "4":
+    console.log('This is the Rinkeby test network.')
+    break
+  case "42":
+    console.log('This is the Kovan test network.')
+    break
+  default:
+    console.log('This is an unknown network.')
+}
+})
+
+     web3.eth.defaultAccount=web3.eth.accounts[0];
+
+     var testContract = web3.eth.contract([
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "myid",
+        "type": "bytes32"
+      },
+      {
+        "name": "result",
+        "type": "string"
+      },
+      {
+        "name": "proof",
+        "type": "bytes"
+      }
+    ],
+    "name": "__callback",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_oraclizeID",
+        "type": "bytes32"
+      },
+      {
+        "name": "_result",
+        "type": "string"
+      }
+    ],
+    "name": "__callback",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "regno",
+        "type": "uint256"
+      }
+    ],
+    "name": "add_selector",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "org",
+        "type": "string"
+      },
+      {
+        "name": "tenderRefNo",
+        "type": "string"
+      },
+      {
+        "name": "tenderID",
+        "type": "uint256"
+      },
+      {
+        "name": "tenderOpenStatus",
+        "type": "bool"
+      },
+      {
+        "name": "tenderCategory",
+        "type": "string"
+      },
+      {
+        "name": "techDoc",
+        "type": "string"
+      },
+      {
+        "name": "financeDoc",
+        "type": "string"
+      },
+      {
+        "name": "bidOpen",
+        "type": "string"
+      },
+      {
+        "name": "bidClose",
+        "type": "string"
+      },
+      {
+        "name": "tenderVal",
+        "type": "uint256"
+      }
+    ],
+    "name": "addTender",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "tender_uid",
+        "type": "uint256"
+      },
+      {
+        "name": "bid_det",
+        "type": "uint256"
+      }
+    ],
+    "name": "bid_to_tender",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "cname",
+        "type": "string"
+      },
+      {
+        "name": "reg",
+        "type": "uint256"
+      },
+      {
+        "name": "regadd",
+        "type": "string"
+      },
+      {
+        "name": "biddertype",
+        "type": "string"
+      },
+      {
+        "name": "city",
+        "type": "string"
+      },
+      {
+        "name": "state",
+        "type": "string"
+      },
+      {
+        "name": "post",
+        "type": "uint256"
+      },
+      {
+        "name": "pan",
+        "type": "string"
+      },
+      {
+        "name": "nature",
+        "type": "string"
+      },
+      {
+        "name": "legals",
+        "type": "string"
+      },
+      {
+        "name": "ccat",
+        "type": "string"
+      }
+    ],
+    "name": "bidderEnrollment",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "tender_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "checkwinner",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [],
+    "name": "getRandom",
+    "outputs": [],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "rep_int",
+        "type": "uint256"
+      },
+      {
+        "name": "bidder_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "give_vote",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "tenderid",
+        "type": "uint256"
+      },
+      {
+        "name": "bidder_reg_no",
+        "type": "uint256"
+      }
+    ],
+    "name": "opinion",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "tender_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "selectrandomselector",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "tenderid",
+        "type": "uint256"
+      }
+    ],
+    "name": "displaybidders",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "tenderid",
+        "type": "uint256"
+      }
+    ],
+    "name": "displaywinner",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "tender_id",
+        "type": "uint256"
+      }
+    ],
+    "name": "disselselectors",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "gettenderarr",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256[]"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "oraclizeID",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "result",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "selectedselectors",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "selectorarr",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "bidderid",
+        "type": "uint256"
+      }
+    ],
+    "name": "show_bidder_rating",
+    "outputs": [
+      {
+        "name": "rating",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "tenderID",
+        "type": "uint256"
+      }
+    ],
+    "name": "showtenderdetails",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "bool"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "tenderID",
+        "type": "uint256"
+      }
+    ],
+    "name": "showtenderdetails2",
+    "outputs": [
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "string"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  }
+]);
+var tender_id= {{data[6]}};
+var test = testContract.at("0x4a77b741b10c507a798b818fc5c3dea71744d741");
+ $("#bid").click(function(){
+   test.bid_to_tender(tender_id, $("#bidamt").val(), (error,result) => (console.log(result)));
+ });
+
+ $("#close").click(function() {
+   test.selectrandomselector(tender_id,(error,result) => (console.log(result)));
+ });
+ </script>
   <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->

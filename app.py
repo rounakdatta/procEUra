@@ -43,46 +43,26 @@ def demo():
 
 @app.route('/tender/<tender_title>', methods=['GET', 'POST'])
 def this_tender(tender_title):
-	session['tender_title'] = tender_title
-	with open(root_dir + "/demo/contracts.txt", "r") as reader:
-		for line in reader:
-			if(line.split()[0] == tender_title):
-				wanted = line
-				break
+	accs = db.child("tenders").child('all_tenders').get()
+	reqel = 1
+	for idx in accs.each():
+		try:
+			if(idx.val()['org'] == tender_title):
+				reqel = idx.val()
+		except KeyError:
+			print("foo")
 
-	if session.get('user'):
-		f = open(root_dir + "/tenders/" + tender_title + ".txt", "r")
-		bids = f.read()
-		bidsearch = re.search(session['user'], bids)
-		if bidsearch is not None:
-			start = bidsearch.start() + len(session['user']) + 1
-			calcbid = bids[start:start + 5]
-			session['bid_submitted'] = True
-		else:
-			calcbid = str(0)
-			session['bid_submitted'] = False
+	tender_details = []
+	tender_details.extend([reqel['bidclose'], reqel['bidopen'], reqel['financedetails'], reqel['org'], reqel['techdetails'], reqel['tendercat'], reqel['tenderid'], reqel['tenderref'], reqel['tenderstatus'], reqel['tenderval']])
+
+	if session.get('logged_in'):
+		return render_template('tender.html', user=session['user'], data=tender_details)
+
 
 	if session.get('dealer_logged_in'):
-		bids = bids.replace('\n', ' ')
-		print(bids)
-		return render_template('tender.html', user=session['user'], all_my_bids=bids.split(), data=wanted.split())
+		return render_template('tender.html', user=session['user'], data=tender_details)
 
-	if request.method == 'POST' and 'bidamount' in request.form:
-
-		with open(root_dir + "/tenders/" + tender_title + ".txt", "a") as bidder:
-			bidder.write(session['user'] + "-" + request.form['bidamount'] + "\n")
-
-		session['bid_submitted'] = True
-		return render_template('portal.html', user=session['user'])
-
-	if session.get('logged_in') or session.get('dealer_logged_in'):
-
-		if session['bid_submitted'] == True:
-			return render_template('tender.html', user=session['user'], status="BID SUBMITTED", amount=calcbid, data=wanted.split())
-		else:
-			return render_template('tender.html', user=session['user'], data=wanted.split())
-	else:
-		return render_template('login.html')
+	return render_template('login.html')
 
 @app.route('/userpage', methods=['GET', 'POST'])
 def userpage():
@@ -94,10 +74,9 @@ def userpage():
 @app.route('/addTender', methods=['GET', 'POST'])
 def addTender():
 	if request.method == 'POST':
-		with open(root_dir + "/demo/contracts.txt", "a") as demo:
-			demo.write(request.form['org'] + " " + request.form['tenderref'] + " " + request.form['tenderid'] + " " + request.form['tenderstatus'] + " " + request.form['tendercat'] + " " + request.form['techdetails'] + " " + request.form['financedetails'] + " " + request.form['bidopen'] + " " + request.form['bidclose'] + " " + request.form['tenderval'] + "\n")
-			newfile = open(root_dir + "/tenders/" + request.form['tenderref'] + ".txt", "w+")
-			newfile.close()
+		db.child("tenders").child("all_tenders")
+		data = {"org" : request.form['org'], "tenderref" : request.form['tenderref'], "tenderid" : request.form['tenderid'], "tenderstatus" : request.form['tenderstatus'], "tendercat" : request.form['tendercat'], "techdetails" : request.form['techdetails'], "financedetails" : request.form['financedetails'], "bidopen" : request.form['bidopen'], "bidclose" : request.form['bidclose'], "tenderval" : request.form['tenderval']}
+		db.push(data)
 
 	if session.get('dealer_logged_in'):
 		return render_template('addTender.html', username=session['user'])
@@ -123,18 +102,24 @@ def login():
 	if request.method == 'POST' and 'dealerusername' in request.form and 'dealerpassword' in request.form:
 		accs = db.child("accounts").child('supplier').get()
 		for idx in accs.each():
-			if(idx.val()[request.form['dealerusername']]):
-				session['logged_in'] = True
-				session['user'] = request.form['dealerusername']
-				return render_template('index.html', user=session['user'])
+			try:
+				if(idx.val()[request.form['dealerusername']] == request.form['dealerpassword']):
+					session['dealer_logged_in'] = True
+					session['user'] = request.form['dealerusername']
+					return render_template('index.html', user=session['user'])
+			except KeyError:
+				print("foo")
 
 	if request.method == 'POST' and 'contractorusername' in request.form and 'contractorpassword' in request.form:
 		accs = db.child("accounts").child('clients').get()
 		for idx in accs.each():
-			if(idx.val()[request.form['contractorusername']]):
-				session['logged_in'] = True
-				session['user'] = request.form['contractorusername']
-				return render_template('index.html', user=session['user'])
+			try:
+				if(idx.val()[request.form['contractorusername']] == request.form['contractorpassword']):
+					session['logged_in'] = True
+					session['user'] = request.form['contractorusername']
+					return render_template('index.html', user=session['user'])
+			except KeyError:
+				print("foo")
 
 	return render_template('login.html')
 

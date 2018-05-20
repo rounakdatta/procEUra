@@ -821,7 +821,10 @@ console.log(result1);
       console.log(result);
 
        var html = "<li class=\"list-group-item\"><p><div class=\"row\">";
-        for (var j = 0; j < result.length; j++)
+
+        html+="<div class=\"col-md-2\"><a href=\"/tender/" + result[0] + "\">"+result[0]+"</a></div>";
+
+        for (var j = 1; j < result.length; j++)
             {
         html+="<div class=\"col-md-2\">"+result[j]+"</div>";
 

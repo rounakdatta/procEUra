@@ -201,54 +201,54 @@ font-family: 'Roboto';font-size: 15px;
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Organization</span>
   </div>
-  <input type="text" class="form-control" id="org" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="cname">
+  <input type="text" class="form-control" id="org" name="org" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="cname">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Tender Ref no.</span>
   </div>
-  <input type="text" class="form-control" id="tenderref" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="reg">
+  <input type="text" class="form-control" id="tenderref" name="tenderref" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="reg">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">TenderId</span>
   </div>
-  <input type="text" class="form-control" id="tenderid" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="regadd">
+  <input type="text" class="form-control" id="tenderid" name="tenderid" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="regadd">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Tender Open Status</span>
   </div>
-  <input type="text" class="form-control" id="tenderstatus" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="biddertype">
+  <input type="text" class="form-control" id="tenderstatus" name="tenderstatus" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="biddertype">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Tender Category</span>
   </div>
-  <input type="textr" class="form-control" id="tendercat" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="city">
+  <input type="textr" class="form-control" id="tendercat" name="tendercat" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="city">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Technical Details</span>
   </div>
-  <input type="text" class="form-control" id="techdetails" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="state">
+  <input type="text" class="form-control" id="techdetails" name="techdetails" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="state">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Finance Details</span>
   </div>
-  <input type="text" class="form-control" id="financedetails" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+  <input type="text" class="form-control" id="financedetails" name="financedetails" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
 </div></dd>
 
     <dd><div class="docs-datepicker">
           <div class="input-group">
-            <input type="text" class="form-control docs-date" id="bidopen" placeholder="Choose Contract Opening Date">
+            <input type="text" class="form-control docs-date" id="bidopen" name="bidopen" placeholder="Choose Contract Opening Date">
             <div class="input-group-append">
             </div>
           </div>
@@ -257,7 +257,7 @@ font-family: 'Roboto';font-size: 15px;
 
     <dd><div class="docs-datepicker">
           <div class="input-group">
-            <input type="text" class="form-control docs-date" id="bidclose" placeholder="Choose Contract Closing Date">
+            <input type="text" class="form-control docs-date" id="bidclose" name="bidclose" placeholder="Choose Contract Closing Date">
             <div class="input-group-append">
             </div>
           </div>
@@ -268,15 +268,14 @@ font-family: 'Roboto';font-size: 15px;
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Tender Value</span>
   </div>
-  <input type="text" class="form-control" id="tenderval" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="legals">
+  <input type="text" class="form-control" id="tenderval" name="tenderval" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="legals">
 </div></dd>
 
 
     </dl>
-   <button id="confirmtender" type="submit">Confirm</button>
+    <button id="buttonreg" type="submit">Add Tender (using MetaMask)</button>
 </form>
 <br><br>
-<button id="buttonreg">Add Tender (using MetaMask)</button>
 {% endif %}
 </center>
 </div>
