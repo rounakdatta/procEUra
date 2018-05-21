@@ -358,9 +358,10 @@ font-family: 'Roboto';font-size: 15px;
 <center><button type="submit" class="btn btn-primary disabled">{{status}}<br>{{amount}}</button></center>
 </div>
 {% else %}
-{% if not session['dealer_logged_in'] and session['logged_in'] and 'true' == isOpen %}
+{% if not session['dealer_logged_in'] and session['logged_in'] and 'true' == isOpen and "false" == hasBid %}
 <div class="col-md-6">
-
+<form action="/tender/{{data[3]}}" method=post>
+<center>
 <div class="card">
 <div class="container">
     <center>
@@ -368,18 +369,19 @@ font-family: 'Roboto';font-size: 15px;
     <dl>
 
     <dt><label for="id">Bid Amount</label>
-    <dd><input id="bidamt" name="bidamount" type="number" min="10000" max="99999" value="">
+    <dd><input id="bidamt" name="bidamt" type="number" value="">
 
     </dd>
 
     </dl>
 
     <input type="checkbox" name="checkbox" value="agree"  >&nbsp;I hereby agree to the Terms <br>
-    <p><button id="bid" type="submit" class="btn btn-primary" onclick="if(!this.form.checkbox.checked){alert('You must agree to the terms first.');return false}" >Make Bid</button></p>
+    <p><button id="bid" name="bid" value="makebid" type="submit" class="btn btn-primary" onclick="if(!this.form.checkbox.checked){alert('You must agree to the terms first.');return false}" >Make Bid</button></p>
 
 </center>
 </div>
 </div>
+</form>
 
 </div>
 {% endif %}

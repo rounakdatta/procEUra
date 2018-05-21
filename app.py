@@ -56,12 +56,30 @@ def this_tender(tender_title):
 	tender_details = []
 	tender_details.extend([reqel['bidclose'], reqel['bidopen'], reqel['financedetails'], reqel['org'], reqel['techdetails'], reqel['tendercat'], reqel['tenderid'], reqel['tenderref'], reqel['tenderstatus'], reqel['tenderval']])
 
+	try:
+		if(reqel[session['user']] != "vzxjhjxhcjxhuhxxx"):
+			print("yay")
+	except KeyError:
+		db.child("tenders").child("all_tenders").child(myqel).update({session['user']: "false"})
+		allownow = True
+
+
+	if request.method == 'POST' and 'bidamt' in request.form:
+		db.child("tenders").child("all_tenders").child(myqel).update({session['user']: "true"})
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true", hasBid="true")
+
 	if request.method == 'POST':
 		db.child("tenders").child("all_tenders").child(myqel).update({"tenderstatus": "false"})
 		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="false")
 
-	if session.get('logged_in') and (reqel['tenderstatus'] == "true"):
-		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true")
+	if session.get('logged_in') and (reqel['tenderstatus'] == "true") and allownow == True:
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true", hasBid="false")
+
+	if session.get('logged_in') and (reqel['tenderstatus'] == "true") and (reqel[session['user']] == "true"):
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true", hasBid="true")
+
+	if session.get('logged_in') and (reqel['tenderstatus'] == "true") and (reqel[session['user']] == "false"):
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true", hasBid="false")
 
 	if session.get('dealer_logged_in') and (reqel['tenderstatus'] == "true"):
 		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true")
@@ -70,7 +88,7 @@ def this_tender(tender_title):
 		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="false")
 
 	if session.get('dealer_logged_in') and (reqel['tenderstatus'] != "true"):
-		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="false")	
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="false")
 
 	return render_template('login.html')
 
