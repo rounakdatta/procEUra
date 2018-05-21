@@ -89,6 +89,7 @@ def this_tender(tender_title):
 		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true", hasBid="true")
 
 	if request.method == 'POST':
+		print(myqel)
 		db.child("tenders").child("all_tenders").child(myqel).update({"tenderstatus": "false"})
 		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="false")
 

@@ -90,7 +90,7 @@ h2::after {
 .carousel .testimonial {
   padding: 30px 0 10px;
 }
-.carousel .overview { 
+.carousel .overview {
   font-style: italic;
 }
 .carousel .overview b {
@@ -121,13 +121,13 @@ h2::after {
   margin: 1px 3px;
   border-radius: 50%;
 }
-.carousel-indicators li { 
+.carousel-indicators li {
   background: #999;
   border-color: transparent;
   box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
 }
-.carousel-indicators li.active {  
-  background: #555;   
+.carousel-indicators li.active {
+  background: #555;
   box-shadow: inset 0 2px 1px rgba(0,0,0,0.2);
 }
 </style>
@@ -312,17 +312,17 @@ font-family: 'Roboto';font-size: 15px;
                 <p class="mb-4 d-none d-md-block">
                   The Ethereum-powered procurement platform is built to <strong>keep the middlemen out</strong>, to make sure <strong>the best bidder finds the best dealer</strong>, ensure that <strong>public data is truly public</strong> and <strong>common citizen's money isn't fiddled with</strong>.
                 </p>
+                <br>
 
                  <a href="{{ url_for('demo') }}"><p class="text-white"><button type="button" class="btn btn-success btn-round-lg"><b>Request a Demo</b><i class="fa fa-desktop ml-2"></i></p></button>
                 </a>
 
-                <a href="{{ url_for('portal') }}"><p class="text-white"><button type="button" class="btn btn-default btn-round-lg"><b>e-Procurement Portal</b><i class="fa fa-users ml-2"></i></p></button>
-                </a>
+
 
               </div>
               <!--Grid column-->
-              
-              
+
+
 
               <!--Grid column-->
               <div class="col-md-6 col-xl-5 mb-4">
@@ -346,9 +346,9 @@ font-family: 'Roboto';font-size: 15px;
 }
 #contentx img {
     position: relative;
-    top: 60%; 
+    top: 60%;
     right: 20%;
-    
+
 }
                 </style>
 
@@ -376,6 +376,8 @@ font-family: 'Roboto';font-size: 15px;
 
 
   </header>
+
+<iframe width="550" height="400" src="https://prezi.com/view/b1GAG9HHhNsNAeqaELU7/embed" webkitallowfullscreen="1" mozallowfullscreen="1" allowfullscreen="1"></iframe>
 
   <!--Main layout-->
   <main>
@@ -408,7 +410,7 @@ font-family: 'Roboto';font-size: 15px;
           <!--Grid column-->
           <div class="col-md-6 mb-4">
 
-            
+
 
             <!-- Main heading -->
             <h3 class="h3 mb-3">Traditional systems are at their worst</h3>
@@ -426,12 +428,12 @@ font-family: 'Roboto';font-size: 15px;
               Papers are kept secret to damage <strong>transparency</strong>
             </p>
 
-            
+
             <a target="_blank" href="https://www.canva.com/design/DAC1D1KQfTc/oaPtw7XUENOTd31bMF3GXw/embed-responsive-item" class="btn btn-indigo btn-md">Statistics
               <i class="fa fa-download ml-1"></i>
             </a>
-      
-    
+
+
 
           </div>
           <!--Grid column-->
@@ -453,8 +455,8 @@ font-family: 'Roboto';font-size: 15px;
 
       </section>
       <!--Section: Main info-->
-     
-     
+
+
       <hr class="my-5">
 
       <!--Section: Main features & Quick Start-->
@@ -971,8 +973,8 @@ font-family: 'Roboto';font-size: 15px;
         </div>
         </div>
 
-        
-        
+
+
 
         </div>
         <!-- <div class="text-center push-to-bottom"><img src='https://www.free-website-hit-counter.com/c.php?d=9&id=106349&s=16' title='vistors'></div> -->
@@ -993,9 +995,9 @@ font-family: 'Roboto';font-size: 15px;
     // Animations initialization
     new WOW().init();
   </script>
-  
+
   <script src="{{ url_for('static', filename='js/main.js') }}"></script>
-  
+
 
     <div class="parallax-window" data-parallax="scroll" data-image-src="{{ url_for('static', filename='img/test-oct-6.png') }}"></div>
     <!-- =================== script =================== -->
@@ -1004,7 +1006,7 @@ font-family: 'Roboto';font-size: 15px;
     <script src="{{ url_for('static', filename='lib/parallax.js-1.4.2/parallax.min.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ripples.js') }}"></script>
     <script src="http://www.jqueryscript.net/demo/jQuery-Plugin-For-Water-Ripple-Animation-ripples/js/jquery.ripples.js">
-</script> 
+</script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ripples-min.js') }}"></script>
         <script>
           $('#myripple').ripples(
@@ -1198,6 +1200,18 @@ font-family: 'Roboto';font-size: 15px;
       }
     });
     </script>
+
+  <script>
+     if(typeof web3 !== 'undefined')
+     {
+       web3 = new Web3(web3.currentProvider);
+     }
+     else
+     {
+         alert("Install MetaMask / other Web3 Injector to use this portal");
+       web3 = new Web3(new Web3.providers.HttpProvider("http://teamsatoshi.pythonanywhere.com"));
+     }
+     </script>
 
     <!--Footer-->
   <footer class="page-footer text-center font-small mt-4 wow fadeIn">

@@ -245,7 +245,7 @@ font-family: 'Roboto';font-size: 15px;
     <td>{{data[22]}}</td>
   </tr>
   <tr>
-    <th>Tender ID</th>
+    <th>Tender Value</th>
     <td>{{data[23]}}</td>
 </table>
 
@@ -285,7 +285,7 @@ font-family: 'Roboto';font-size: 15px;
     <td>{{data[25]}}</td>
   </tr>
   <tr>
-    <th>Tender Value</th>
+    <th>Tender ID</th>
     <td>{{data[26]}}</td>
 </table>
 
@@ -339,10 +339,7 @@ font-family: 'Roboto';font-size: 15px;
 <center>
 <iframe src="https://drive.google.com/file/d/140MHGaKp5jBvmh0qd8e7_mB_IBun4oyI/preview" frameborder="0" style="overflow:hidden;height:300px;" width="100%" height="580"></iframe>
 </center>
-<div class="container">
-    <h1>Bidders</h1>
-<h2 id="show"></h2>
-</div>
+
 </div>
 
 {% if 'false' == isOpen %}
@@ -352,15 +349,23 @@ font-family: 'Roboto';font-size: 15px;
 
 {% if session['dealer_logged_in'] and 'true' == isOpen %}
 <div class="col-md-6">
-<form action="/tender/{{data[3]}}" method=post>
+<form action="/tender/{{data[14]}}" method=post>
 <center>
 
     <button id="close">Close Tender</button>
 </center>
 </form>
+
 </div>
 {% endif %}
 
+{% if isOpen == "false" %}
+<div class="col-md-6">
+    <div class="container">
+    <div id="box"></div>
+    </div>
+    </div>
+{% endif %}
 
 {% if session['bid_submitted'] and not session['dealer_logged_in'] and not session['bid_complete'] %}
 <div class="col-md-6">
@@ -369,7 +374,7 @@ font-family: 'Roboto';font-size: 15px;
 {% else %}
 {% if not session['dealer_logged_in'] and session['logged_in'] and 'true' == isOpen and "false" == hasBid %}
 <div class="col-md-6">
-<form action="/tender/{{data[3]}}" method=post>
+<form action="/tender/{{data[14]}}" method=post>
 <center>
 <div class="card">
 <div class="container">
@@ -392,7 +397,10 @@ font-family: 'Roboto';font-size: 15px;
 </div>
 </form>
 
+
 </div>
+{% else %}
+
 {% endif %}
 {% endif %}
       <!--Grid row-->
@@ -471,7 +479,7 @@ font-family: 'Roboto';font-size: 15px;
      }
      else
      {
-       web3 = new Web3(new Web3.providers.HttpProvider("http://teamsatoshi.pythonanywhere.com/tender/" + {{data[3]}}));
+       web3 = new Web3(new Web3.providers.HttpProvider("http://teamsatoshi.pythonanywhere.com/tender/"));
      }
      web3.version.getNetwork((err, netId) => {
 switch (netId) {
@@ -994,7 +1002,18 @@ var test = testContract.at("0xc12e85dc500d5d93439f54193e16422b1e8d106c");
      if(!error)
      {
 
-        $("#show").html("The bidders are "+result[1]);
+        var html = "Bidder IDs<br><li class=\"list-group-item\"><p><div class=\"row\">";
+
+        for (var j = 1; j < result.length; j++)
+            {
+        html+="<div class=\"col-md-2\">"+result[j]+"</div>";
+
+            }
+
+                    html+="</div></p></li>";
+
+document.getElementById("box").innerHTML += html;
+
 
      }
      else {
