@@ -339,7 +339,16 @@ font-family: 'Roboto';font-size: 15px;
 <center>
 <iframe src="https://drive.google.com/file/d/140MHGaKp5jBvmh0qd8e7_mB_IBun4oyI/preview" frameborder="0" style="overflow:hidden;height:300px;" width="100%" height="580"></iframe>
 </center>
+<div class="container">
+    <h1>Bidders</h1>
+<h2 id="show"></h2>
 </div>
+</div>
+
+{% if 'false' == isOpen %}
+
+{% endif %}
+
 
 {% if session['dealer_logged_in'] and 'true' == isOpen %}
 <div class="col-md-6">
@@ -978,8 +987,20 @@ var test = testContract.at("0xc12e85dc500d5d93439f54193e16422b1e8d106c");
  });
 
  $("#close").click(function() {
-   test.selectrandomselector(tender_id,{gas :10000000},(error,result) => (console.log(result)));
+   test.selectrandomselector(tender_id,(error,result) => (console.log(result)));
  });
+
+  test.displaybidders(tender_id,function(error,result) {
+     if(!error)
+     {
+
+        $("#show").html("The bidders are "+result[1]);
+
+     }
+     else {
+       console.log(error);
+     }
+   });
  </script>
   <!-- JQuery -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
