@@ -4,7 +4,7 @@ import pyrebase
 
 app = Flask(__name__)
 
-root_dir = '.'
+root_dir = '/home/teamsatoshi/936a185caaa266bb9cbe981e9e05cb.github.io'
 
 config = {
   "apiKey": "AIzaSyDhyp_l-BjhR3WJq6AsOu64cFf96sOg4qw",
@@ -49,18 +49,28 @@ def this_tender(tender_title):
 		try:
 			if(idx.val()['org'] == tender_title):
 				reqel = idx.val()
+				myqel = idx.key()
 		except KeyError:
 			print("foo")
 
 	tender_details = []
 	tender_details.extend([reqel['bidclose'], reqel['bidopen'], reqel['financedetails'], reqel['org'], reqel['techdetails'], reqel['tendercat'], reqel['tenderid'], reqel['tenderref'], reqel['tenderstatus'], reqel['tenderval']])
 
-	if session.get('logged_in'):
-		return render_template('tender.html', user=session['user'], data=tender_details)
+	if request.method == 'POST':
+		db.child("tenders").child("all_tenders").child(myqel).update({"tenderstatus": "false"})
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="false")
 
+	if session.get('logged_in') and (reqel['tenderstatus'] == "true"):
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true")
 
-	if session.get('dealer_logged_in'):
-		return render_template('tender.html', user=session['user'], data=tender_details)
+	if session.get('dealer_logged_in') and (reqel['tenderstatus'] == "true"):
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true")
+
+	if session.get('logged_in') and (reqel['tenderstatus'] != "true"):
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="false")
+
+	if session.get('dealer_logged_in') and (reqel['tenderstatus'] != "true"):
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="false")	
 
 	return render_template('login.html')
 
@@ -77,6 +87,7 @@ def addTender():
 		db.child("tenders").child("all_tenders")
 		data = {"org" : request.form['org'], "tenderref" : request.form['tenderref'], "tenderid" : request.form['tenderid'], "tenderstatus" : request.form['tenderstatus'], "tendercat" : request.form['tendercat'], "techdetails" : request.form['techdetails'], "financedetails" : request.form['financedetails'], "bidopen" : request.form['bidopen'], "bidclose" : request.form['bidclose'], "tenderval" : request.form['tenderval']}
 		db.push(data)
+		return render_template('index.html')
 
 	if session.get('dealer_logged_in'):
 		return render_template('addTender.html', username=session['user'])

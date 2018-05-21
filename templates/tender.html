@@ -341,27 +341,14 @@ font-family: 'Roboto';font-size: 15px;
 </center>
 </div>
 
-{% if session['bid_complete'] %}
-
-{% endif %}
-
-
-{% if session['dealer_logged_in'] and not session['bid_complete'] %}
+{% if session['dealer_logged_in'] and 'true' == isOpen %}
 <div class="col-md-6">
-
+<form action="/tender/{{data[3]}}" method=post>
 <center>
-  <ul class="list-group">
-{% for bid in all_my_bids %}
-  <li class="list-group-item">
-    {{bid}}
-
-  </li>
-{% endfor %}
-</ul>
 
     <button id="close">Close Tender</button>
 </center>
-
+</form>
 </div>
 {% endif %}
 
@@ -371,7 +358,7 @@ font-family: 'Roboto';font-size: 15px;
 <center><button type="submit" class="btn btn-primary disabled">{{status}}<br>{{amount}}</button></center>
 </div>
 {% else %}
-{% if not session['dealer_logged_in'] and session['logged_in'] and not session['bid_complete'] %}
+{% if not session['dealer_logged_in'] and session['logged_in'] and 'true' == isOpen %}
 <div class="col-md-6">
 
 <div class="card">
