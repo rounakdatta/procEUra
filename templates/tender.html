@@ -983,13 +983,13 @@ switch (netId) {
   }
 ]);
 var tender_id= {{data[6]}};
-var test = testContract.at("0x4a77b741b10c507a798b818fc5c3dea71744d741");
+var test = testContract.at("0xc12e85dc500d5d93439f54193e16422b1e8d106c");
  $("#bid").click(function(){
    test.bid_to_tender(tender_id, $("#bidamt").val(), (error,result) => (console.log(result)));
  });
 
  $("#close").click(function() {
-   test.selectrandomselector(tender_id,(error,result) => (console.log(result)));
+   test.selectrandomselector(tender_id,{gas :10000000},(error,result) => (console.log(result)));
  });
  </script>
   <!-- JQuery -->
