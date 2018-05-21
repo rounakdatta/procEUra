@@ -196,7 +196,9 @@ font-family: 'Roboto';font-size: 15px;
 <button type="button" class="btn btn-primary disabled">Tender Details</button>
 
     <dl>
-
+<div class="container">
+    <div class="row">
+<div class="col-md-6">
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Organization</span>
@@ -271,9 +273,170 @@ font-family: 'Roboto';font-size: 15px;
   <input type="text" class="form-control" id="tenderval" name="tenderval" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="legals">
 </div></dd>
 
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Payment Mode</span>
+  </div>
+  <input type="text" class="form-control" id="paymode" name="paymode" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
 
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Fee Payable To</span>
+  </div>
+  <input type="text" class="form-control" id="payto" name="payto" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">General Technical Evaluation Allowed</span>
+  </div>
+  <input type="text" class="form-control" id="gentech" name="gentech" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Form Of Contract</span>
+  </div>
+  <input type="text" class="form-control" id="formcont" name="formcont" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Title</span>
+  </div>
+  <input type="text" class="form-control" id="titlec" name="titlec" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+</div>
+
+<!-- push to firebase, not blockchain -->
+
+<div class="col-md-6">
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Work Description</span>
+  </div>
+  <input type="text" class="form-control" id="workd" name="workd" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Pre Qualification</span>
+  </div>
+  <input type="text" class="form-control" id="preq" name="preq" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Pre Bid Meeting Address</span>
+  </div>
+  <input type="text" class="form-control" id="meetadd" name="meetadd" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="docs-datepicker">
+          <div class="input-group">
+            <input type="text" class="form-control docs-date" id="meetdate" name="meetdate" placeholder="Pre Bid Meeting Date">
+            <div class="input-group-append">
+            </div>
+          </div>
+          <div class="docs-datepicker-container"></div>
+        </div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Bid Opening Place</span>
+  </div>
+  <input type="text" class="form-control" id="bidop" name="bidop" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="docs-datepicker">
+          <div class="input-group">
+            <input type="text" class="form-control docs-date" id="pubd" name="pubd" placeholder="Published Date">
+            <div class="input-group-append">
+            </div>
+          </div>
+          <div class="docs-datepicker-container"></div>
+        </div></dd>
+
+    <dd><div class="docs-datepicker">
+          <div class="input-group">
+            <input type="text" class="form-control docs-date" id="downds" name="downds" placeholder="Document Download Start Date">
+            <div class="input-group-append">
+            </div>
+          </div>
+          <div class="docs-datepicker-container"></div>
+        </div></dd>
+
+    <dd><div class="docs-datepicker">
+          <div class="input-group">
+            <input type="text" class="form-control docs-date" id="downde" name="downde" placeholder="Document Download End Date">
+            <div class="input-group-append">
+            </div>
+          </div>
+          <div class="docs-datepicker-container"></div>
+        </div></dd>
+
+    <dd><div class="docs-datepicker">
+          <div class="input-group">
+            <input type="text" class="form-control docs-date" id="clars" name="clars" placeholder="Clarification Start Date">
+            <div class="input-group-append">
+            </div>
+          </div>
+          <div class="docs-datepicker-container"></div>
+        </div></dd>
+
+    <dd><div class="docs-datepicker">
+          <div class="input-group">
+            <input type="text" class="form-control docs-date" id="clare" name="clare" placeholder="Clarification End Date">
+            <div class="input-group-append">
+            </div>
+          </div>
+          <div class="docs-datepicker-container"></div>
+        </div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Independent External Monitor</span>
+  </div>
+  <input type="text" class="form-control" id="iem" name="iem" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Tender Fee Exemption Allowed</span>
+  </div>
+  <input type="text" class="form-control" id="tfe" name="tfe" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Person Name</span>
+  </div>
+  <input type="text" class="form-control" id="pername" name="pername" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Person Address</span>
+  </div>
+  <input type="text" class="form-control" id="pera" name="pera" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+    <dd><div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="inputGroup-sizing-default">Multicurrency allowed</span>
+  </div>
+  <input type="text" class="form-control" id="mulca" name="mulca" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+</div></dd>
+
+
+</div></div>
     </dl>
-    <button id="buttonreg" type="submit">Add Tender (using MetaMask)</button>
+</div>
+
+    <button id="buttonreg" type="submit">Add Tender</button>
 </form>
 <br><br>
 {% endif %}

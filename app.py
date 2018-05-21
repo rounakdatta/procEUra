@@ -53,8 +53,21 @@ def this_tender(tender_title):
 		except KeyError:
 			print("foo")
 
+	accs2 = db.child("bidders").child('confirmed').get()
+	checker = -1
+	for idx in accs2.each():
+		try:
+			if(idx.val()[session['user']] == "confirmed" or idx.val()[session['user']] == "failed"):
+				xeqel = idx.val()
+				xmyqel = idx.key()
+				checker = 1
+				break
+		except KeyError:
+			print("foo")
+
 	tender_details = []
-	tender_details.extend([reqel['bidclose'], reqel['bidopen'], reqel['financedetails'], reqel['org'], reqel['techdetails'], reqel['tendercat'], reqel['tenderid'], reqel['tenderref'], reqel['tenderstatus'], reqel['tenderval']])
+	print(reqel)
+	tender_details.extend([reqel['bidclose'], reqel['bidop'], reqel['bidopen'], reqel['clare'], reqel['clars'], reqel['downde'], reqel['downds'], reqel['financedetails'], reqel['formcont'], reqel['gentech'], reqel['iem'], reqel['meetadd'], reqel['meetdate'], reqel['mulca'], reqel['org'], reqel['paymode'], reqel['payto'], reqel['pera'], reqel['pername'], reqel['preq'], reqel['pubd'], reqel['techdetails'], reqel['tendercat'], reqel['tenderid'], reqel['tenderref'], reqel['tenderstatus'], reqel['tenderval'], reqel['tfe'], reqel['titlec'], reqel['workd']])
 
 	try:
 		if(reqel[session['user']] != "vzxjhjxhcjxhuhxxx"):
@@ -63,6 +76,13 @@ def this_tender(tender_title):
 		db.child("tenders").child("all_tenders").child(myqel).update({session['user']: "false"})
 		allownow = True
 
+	if(session.get('logged_in') and checker == -1):
+		db.child("bidders").child("confirmed")
+		db.push({session['user']: "failed"})
+		return render_template('registerdetails.html', user=session['user'])
+
+	if(session.get('logged_in') and xeqel[session['user']] != "confirmed"):
+		return render_template('registerdetails.html', user=session['user'])
 
 	if request.method == 'POST' and 'bidamt' in request.form:
 		db.child("tenders").child("all_tenders").child(myqel).update({session['user']: "true"})
@@ -72,13 +92,13 @@ def this_tender(tender_title):
 		db.child("tenders").child("all_tenders").child(myqel).update({"tenderstatus": "false"})
 		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="false")
 
-	if session.get('logged_in') and (reqel['tenderstatus'] == "true") and allownow == True:
-		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true", hasBid="false")
-
 	if session.get('logged_in') and (reqel['tenderstatus'] == "true") and (reqel[session['user']] == "true"):
 		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true", hasBid="true")
 
 	if session.get('logged_in') and (reqel['tenderstatus'] == "true") and (reqel[session['user']] == "false"):
+		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true", hasBid="false")
+
+	if session.get('logged_in') and (reqel['tenderstatus'] == "true") and allownow == True:
 		return render_template('tender.html', user=session['user'], data=tender_details, isOpen="true", hasBid="false")
 
 	if session.get('dealer_logged_in') and (reqel['tenderstatus'] == "true"):
@@ -103,7 +123,7 @@ def userpage():
 def addTender():
 	if request.method == 'POST':
 		db.child("tenders").child("all_tenders")
-		data = {"org" : request.form['org'], "tenderref" : request.form['tenderref'], "tenderid" : request.form['tenderid'], "tenderstatus" : request.form['tenderstatus'], "tendercat" : request.form['tendercat'], "techdetails" : request.form['techdetails'], "financedetails" : request.form['financedetails'], "bidopen" : request.form['bidopen'], "bidclose" : request.form['bidclose'], "tenderval" : request.form['tenderval']}
+		data = {"org" : request.form['org'], "tenderref" : request.form['tenderref'], "tenderid" : request.form['tenderid'], "tenderstatus" : request.form['tenderstatus'], "tendercat" : request.form['tendercat'], "techdetails" : request.form['techdetails'], "financedetails" : request.form['financedetails'], "bidopen" : request.form['bidopen'], "bidclose" : request.form['bidclose'], "tenderval" : request.form['tenderval'], "paymode" : request.form['paymode'], "payto" : request.form['payto'], "gentech" : request.form['gentech'], "formcont" : request.form['formcont'], "titlec" : request.form['titlec'], "workd" : request.form['workd'], "preq" : request.form['preq'], "meetadd" : request.form['meetadd'], "meetdate" : request.form['meetdate'], "bidop" : request.form['bidop'], "pubd" : request.form['pubd'], "downds" : request.form['downds'], "downde" : request.form['downde'], "clars" : request.form['clars'], "clare" : request.form['clare'], "iem" : request.form['iem'], "tfe" : request.form['tfe'], "pername" : request.form['pername'], "pera" : request.form['pera'], "mulca" : request.form['mulca']}
 		db.push(data)
 		return render_template('index.html')
 
@@ -167,6 +187,12 @@ def register():
 		db.child("accounts").child("clients")
 		data = {request.form['contractorusername'] : request.form['contractorpassword']}
 		db.push(data)
+		session['user'] = request.form['contractorusername']
+
+		db.child("bidders").child("confirmed")
+		dat = {session['user'] : "failed"}
+		db.push(dat)
+
 		return render_template('registerdetails.html')
 	else:
 		flash('wrong password!')
@@ -180,6 +206,25 @@ def register():
 		flash('wrong password!')
 
 	return render_template('register.html')
+
+@app.route('/registerdetails', methods=['GET', 'POST'])
+def registerdetails():
+
+	accs = db.child("bidders").child('confirmed').get()
+	for idx in accs.each():
+		try:
+			if(idx.val()[session['user']] == "failed"):
+				thisone = idx.key()
+		except KeyError:
+			print("foo")
+
+	if request.method == 'POST':
+		db.child("bidders").child("confirmed").child(thisone).update({session['user']: "confirmed"})
+		session['logged_in'] = True
+		print(thisone)
+		return render_template('index.html', user=session['user'])
+
+	return render_template('registerdetails.html')
 
 @app.route('/tender', methods=['GET', 'POST'])
 def tender():

@@ -188,91 +188,91 @@ font-family: 'Roboto';font-size: 15px;
 <div class="container">
     <center>
 
-{% if session['logged_in'] %}
-<p>Recorded!</p>
-{% else %}
 <button type="button" class="btn btn-primary disabled">Bidder Details</button>
+
+<form action="/registerdetails" method=post>
+
     <dl>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Company Name</span>
   </div>
-  <input type="text" class="form-control" id="cname" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="cname">
+  <input type="text" class="form-control" id="cname" name="cname" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="cname">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">Registration</span>
   </div>
-  <input type="text" class="form-control" id="reg" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="reg">
+  <input type="text" class="form-control" id="reg" name="reg" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="reg">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">regadd</span>
   </div>
-  <input type="text" class="form-control" id="regadd" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="regadd">
+  <input type="text" class="form-control" id="regadd" name="regadd" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="regadd">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">biddertype</span>
   </div>
-  <input type="text" class="form-control" id="biddertype" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="biddertype">
+  <input type="text" class="form-control" id="biddertype" name="biddertype" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="biddertype">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">city</span>
   </div>
-  <input type="textr" class="form-control" id="city" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="city">
+  <input type="textr" class="form-control" id="city" name="city" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="city">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">state</span>
   </div>
-  <input type="text" class="form-control" id="state" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="state">
+  <input type="text" class="form-control" id="state" name="state" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="state">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">post</span>
   </div>
-  <input type="text" class="form-control" id="post" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
+  <input type="text" class="form-control" id="post" name="post" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="post">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">pan</span>
   </div>
-  <input type="text" class="form-control" id="pan" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="pan">
+  <input type="text" class="form-control" id="pan" name="pan" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="pan">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">nature</span>
   </div>
-  <input type="text" class="form-control" id="nature" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="nature">
+  <input type="text" class="form-control" id="nature" name="nature" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="nature">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">legals</span>
   </div>
-  <input type="text" class="form-control" id="legals" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="legals">
+  <input type="text" class="form-control" id="legals" name="legals" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="legals">
 </div></dd>
 
     <dd><div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="inputGroup-sizing-default">ccats</span>
   </div>
-  <input type="text" class="form-control" id="ccats" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="ccats">
+  <input type="text" class="form-control" id="ccats" name="ccats" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="ccats">
 </div></dd>
     </dl>
     <button id= "buttonreg">Register</button>
-{% endif %}
+</form>
 </center>
 </div>
 </div>
