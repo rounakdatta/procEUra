@@ -5,18 +5,18 @@
 <b><h1>TopCoder BSIC Incubator 2018</h1></b>
 
 <b><h2>Team Satoshi</h2></b>
-<h3><b>Our product</b>: Amazing product name</h3>
+
 <h3><b>Our motto</b>:<i> Healthier procurment leads to healthier economies</i></h3>
 <b><h2>Getting Started</h2></b>
 
 We are a blochain based e-procurement platform which helps in streamlining the procuremnet process by making it more open, transparent and fast. Our main goals are  keep the middlemen out, to make sure the best bidder finds the best dealer, ensure that public data is truly public and common citizen's money isn't fiddled with. 
 
 You can know more about our product by seeing the videos given below:-<br>
-[Presentation Video](https://youtu.be/gsy3hwn_c9c)<br>
-[Demo Video](// add your link here)<br>
+<u>[Presentation Video](https://youtu.be/gsy3hwn_c9c)</u><br>
+<u>[Demo Video](// add your link here)<br></u>
 
 Do check out our official doc which explains our platform in depth:<br>
-[Official Document](//  link to the doc)
+<u>[Official Document](//  link to the doc)</u><br>
 
 Our system can be deployed after following below given steps:
 <b><h3>Requirements:</h3></b>
