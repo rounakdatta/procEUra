@@ -26,12 +26,7 @@ Our system can be deployed after following below given steps:
 3. Web3.js
 4. Chrome
 ```
-<b><h3>How to Install</h3></b>
-```
--git clone <a href="https://github.com/936a185caaa266bb9cbe981e9e05cb">this</a>
--truffle compile
--truffle migrate
-```
+
 ### Built With
 ```
 * [Solidity](https://solidity.readthedocs.io/en/v0.4.24/#) - Smart contract
