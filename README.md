@@ -9,9 +9,16 @@
 <h3><b>Our motto</b>:<i> Healthier procurment leads to healthier economies</i></h3>
 <b><h2>Getting Started</h2></b>
 
-We are a blochain based e-procurement platform which helps in streamlining the procuremnet process by making it more open, transparent and 
-fast. Our main goals are  keep the middlemen out, to make sure the best bidder finds the best dealer, ensure that public data is truly
-public and common citizen's money isn't fiddled with. Our system can be deployed after following below given steps:
+We are a blochain based e-procurement platform which helps in streamlining the procuremnet process by making it more open, transparent and fast. Our main goals are  keep the middlemen out, to make sure the best bidder finds the best dealer, ensure that public data is truly public and common citizen's money isn't fiddled with. 
+
+You can know more about our product by seeing the videos given below:-<br>
+[Presentation Video](https://youtu.be/gsy3hwn_c9c)<br>
+[Demo Video](// add your link here)<br>
+
+Do check out our official doc which explains our platform in depth:<br>
+[Official Document](//  link to the doc)
+
+Our system can be deployed after following below given steps:
 <b><h3>Requirements:</h3></b>
 ```
 1. Metamask
@@ -43,13 +50,6 @@ Please read [CONTRIBUTING.md](https://github.com/936a185caaa266bb9cbe981e9e05cb)
 ### Versioning
 
 We use [GitHub](http://github.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/936a185caaa266bb9cbe981e9e05cb). 
-
-### Team Members:
-* [Arjun Bahuguna](https://github.com/arjunbahuguna)
-* [Krishna Jangid](https://github.com/jangidkrishna)
-* [Raunak Datta](https://github.com/rounakdatta)
-* [Souradeep Das](https://github.com/souradeep-das)
-* [Tejasv Sharma](https://github.com/tejas2005)
 
 
 ### License
