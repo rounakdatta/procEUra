@@ -16,7 +16,7 @@ You can know more about our product by seeing the videos given below:-<br>
 <u>[Demo Video](// add your link here)<br></u>
 
 Do check out our official doc which explains our platform in depth:<br>
-<u>[Official Document](//  link to the doc)</u><br>
+<u>[Official Document](https://drive.google.com/open?id=1CS_IQmzKSFORWP3GrUOTehTW0jafQHgg)</u><br>
 
 Our system can be deployed after following below given steps:
 <b><h3>Requirements:</h3></b>
