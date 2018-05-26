@@ -1,50 +1,34 @@
-<b><h1>TopCoder BSIC Incubator 2018</h1></b>
+# Blockchain based e-Procurement platform
+***Healthier procurement leads to healthier economies***
 
-<b><h2>Team Satoshi</h2></b>
+[![Powered by Ethereum](https://image.ibb.co/ftY1fo/ethereum.png)](https://www.ethereum.org/)
 
-<h3><b>Our motto</b>:<i> Healthier procurment leads to healthier economies</i></h3>
-<b><h2>Getting Started</h2></b>
+## [Topcoder BSIC Incubator 2018](https://blockchain.topcoder.com/bsic-incubator)
+## Team Satoshi
 
-We are a blochain based e-procurement platform which helps in streamlining the procuremnet process by making it more open, transparent and fast. Our main goals are  keep the middlemen out, to make sure the best bidder finds the best dealer, ensure that public data is truly public and common citizen's money isn't fiddled with. 
+A blockhain based e-procurement platform which helps in streamlining the procurement process by making it more open, transparent and fast. Our main goals are to keep the middlemen out, to make sure the best bidder finds the best dealer, ensure that public data is truly public and common citizen's money isn't fiddled with.
 
-You can know more about our product by seeing the videos given below:-<br>
-<u>[Presentation Video](https://youtu.be/gsy3hwn_c9c)</u><br>
-<u>[Demo Video](https://youtu.be/wHM7EWjD_iY)<br></u>
+#### Concept Presentation
 
-Do check out our official doc which explains our platform in depth:<br>
-<u>[Official Document](https://drive.google.com/open?id=1CS_IQmzKSFORWP3GrUOTehTW0jafQHgg)</u><br>
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/gsy3hwn_c9c/0.jpg)](https://www.youtube.com/watch?v=gsy3hwn_c9c)
 
-Our system can be deployed after following below given steps:
-<b><h3>Requirements:</h3></b>
+#### Live Product : [HERE](tinyurl.com/teamsatoshi)
+
+![Demo GIF](https://preview.ibb.co/dy7DRT/bsic2018.gif)
+
+#### Whitepaper
+
+[![Technical Whitepaper](https://lh3.googleusercontent.com/sc0BKtgHkLTjxkI7cYrrXUHWWXeSPqgZOt9t02Ol9xSHXNIWXjxpz7Dlh2dRQJHA3imqKA=s60)](https://drive.google.com/file/d/1wIKR7gG3-esUwT77z3uqp3N6d-HWxqCO/view)
+
+#### Quick Offline Demo
+
+```sh
+$ git clone https://github.com/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io.git
+$ cd 936a185caaa266bb9cbe981e9e05cb.github.io
+$ make
 ```
-1. Metamask
-2. Truffle.js
-3. Web3.js
-4. Chrome
-```
 
-### Built With
-```
-* [Solidity](https://solidity.readthedocs.io/en/v0.4.24/#) - Smart contract
-* [Web3.js](https://web3js.readthedocs.io/en/1.0/) - For smart contract interaction
-* [HTML, CSS and Python](https://www.w3schools.com) - For website Development
-* [Metamask](https://metamask.io/) - For completing the transaction from the browser
-```
-### Testing Environment
-```
-* [Ropsten TestNet](https://ropsten.etherscan.io) - For deploying and testing the product
-```
-### Contributing
-
-Please read [CONTRIBUTING.md](https://github.com/936a185caaa266bb9cbe981e9e05cb) for details on our code of conduct, and the process for submitting pull requests to us.
-
-### Versioning
-
-We use [GitHub](http://github.com/) for versioning. For the versions available, see the [tags on this repository](https://github.com/936a185caaa266bb9cbe981e9e05cb). 
+[![Metamask](https://i0.wp.com/cdng.c3dt.com/icon/3265891-com.wallet.metamask.png)](https://metamask.io/)       [![Web3.JS](https://image.ibb.co/f8U7Lo/web3.jpg)](https://github.com/ethereum/web3.js/)   [![Solidity](https://image.ibb.co/c8xit8/sol_jpeg.jpg)](http://solidity.readthedocs.io/en/v0.4.21/)   [![Truffle](https://image.ibb.co/f3jDt8/truffle.png)](http://truffleframework.com/) [![Python](https://i0.wp.com/cdnb.c3dt.com/icon/744996-com.study.python.png)](https://www.python.org/)
 
 
-### License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-
+[![HitCount](http://hits.dwyl.io/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io.svg)](http://hits.dwyl.io/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io)
