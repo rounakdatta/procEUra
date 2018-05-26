@@ -14,7 +14,7 @@ A blockhain based e-procurement platform which helps in streamlining the procure
 
 #### Live Product : [HERE](tinyurl.com/teamsatoshi)
 
-![Demo GIF](https://preview.ibb.co/dy7DRT/bsic2018.gif)
+![Demo GIF](https://i.imgur.com/MTudU1U.gif)
 
 #### Whitepaper
 
@@ -22,7 +22,7 @@ A blockhain based e-procurement platform which helps in streamlining the procure
 
 #### Quick Offline Demo
 
-```sh
+```
 $ git clone https://github.com/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io.git
 $ cd 936a185caaa266bb9cbe981e9e05cb.github.io
 $ make
