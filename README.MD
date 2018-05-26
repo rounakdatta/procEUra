@@ -10,11 +10,11 @@ A blockhain based e-procurement platform which helps in streamlining the procure
 
 #### Concept Presentation
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/gsy3hwn_c9c/0.jpg)](https://www.youtube.com/watch?v=gsy3hwn_c9c)
+[![Concept](https://img.youtube.com/vi/gsy3hwn_c9c/0.jpg)](https://www.youtube.com/watch?v=gsy3hwn_c9c)
 
-#### Live Product : [HERE](tinyurl.com/teamsatoshi)
+#### Live Product : [HERE](http://teamsatoshi.pythonanywhere.com)
 
-![Demo GIF](https://i.imgur.com/MTudU1U.gif)
+[![Live Demo](https://img.youtube.com/vi/wHM7EWjD_iY/0.jpg)](https://www.youtube.com/watch?v=wHM7EWjD_iY)
 
 #### Whitepaper
 
@@ -24,9 +24,17 @@ A blockhain based e-procurement platform which helps in streamlining the procure
 
 ```
 $ git clone https://github.com/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io.git
+```
+```
 $ cd 936a185caaa266bb9cbe981e9e05cb.github.io
+```
+```
 $ make
 ```
+
+Head over to [localhost:5000](http://localhost:5000).
+
+
 
 [![Metamask](https://i0.wp.com/cdng.c3dt.com/icon/3265891-com.wallet.metamask.png)](https://metamask.io/)       [![Web3.JS](https://image.ibb.co/f8U7Lo/web3.jpg)](https://github.com/ethereum/web3.js/)   [![Solidity](https://image.ibb.co/c8xit8/sol_jpeg.jpg)](http://solidity.readthedocs.io/en/v0.4.21/)   [![Truffle](https://image.ibb.co/f3jDt8/truffle.png)](http://truffleframework.com/) [![Python](https://i0.wp.com/cdnb.c3dt.com/icon/744996-com.study.python.png)](https://www.python.org/)
 
