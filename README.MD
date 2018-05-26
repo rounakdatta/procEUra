@@ -1,7 +1,3 @@
-
-
-
-
 <b><h1>TopCoder BSIC Incubator 2018</h1></b>
 
 <b><h2>Team Satoshi</h2></b>
@@ -50,4 +46,5 @@ We use [GitHub](http://github.com/) for versioning. For the versions available, 
 ### License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
 

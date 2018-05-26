@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='img/nexttech-icon.png') }}">
-  <title>Developers</title>
+  <title>e-Procurement Portal</title>
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Bootstrap core CSS -->
@@ -99,13 +99,13 @@ font-family: 'Roboto';font-size: 15px;
 
 <body>
 
-  <!-- Navbar -->
+<!-- Navbar -->
       <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
         <div class="container">
 
           <!-- Brand -->
           <a class="navbar-brand" href="{{ url_for('index') }}">
-            <button type="button" class="btn btn-default btn-round-lg"><strong>Home</strong></button>
+            <button type="button" class="btn btn-default btn-round-lg"><strong>Team Satoshi</strong></button>
           </a>
 
           <!-- Collapse -->
@@ -122,13 +122,12 @@ font-family: 'Roboto';font-size: 15px;
                 <a class="nav-link" href="{{ url_for('whitepaper') }}"><strong>Whitepaper</strong></a>
               </li>
 
-
             </ul>
 
             <!-- Right -->
             <ul class="navbar-nav nav-flex-icons">
 
-              {% if session['logged_in'] or session['dealer_logged_in']%}
+              {% if session['logged_in'] or session['dealer_logged_in'] %}
               <li class="nav-item">
                   <a href="{{ url_for('userpage') }}" class="nav-link border border-light rounded">
                     <i class="fa fa-user mr-2"></i>{{user}}
@@ -156,27 +155,102 @@ font-family: 'Roboto';font-size: 15px;
   <main class="mt-5 pt-4">
     <div class="container">
 
-      <h3 class="my-5 h3 text-center">Topcoder BSIC 2018</h3>
-      <h5 class="my-5 h5 text-center">Developers</h5>
+      <h3 class="my-5 h3 text-center">Welcome to the e-Procurement Portal!</h3>
 
-<center>
+<style type="text/css">
+    .list-group{
+      display:inline-block;
+ }
+ </style>
 
 <div class="row">
 
-  <!-- the right hand side elements-->
-<div class="col-md-12">
+	<!-- the right hand side elements-->
+  <div class="col-md-3">
 
   <ul class="list-group">
-  <li class="list-group-item">Arjun Bahuguna</li>
-  <li class="list-group-item">Krishna Jangid</li>
-  <li class="list-group-item">Tejasv Sharma</li>
-  <li class="list-group-item">Souradeep Das</li>
-  <li class="list-group-item">Rounak Datta</li>
+  <li class="list-group-item">MIS Reports</li>
+  <li class="list-group-item">Tenders by Location</li>
+  <li class="list-group-item">Tenders by Organisation</li>
+  <li class="list-group-item">Tenders by Classification</li>
+  <li class="list-group-item">Tenders in Archive</li>
+  <li class="list-group-item">Tender Status</li>
+  <li class="list-group-item">Cancelled / Retendered</li>
+  <li class="list-group-item">Downloads</li>
+  <li class="list-group-item">Announcements</li>
+  <li class="list-group-item">Awards</li>
+  <li class="list-group-item">Site Compatibility</li>
 </ul>
 
 </div>
 
-</center>
+<!-- the right hand side elements-->
+
+  <div class="col-md-9">
+
+<button type="button" class="btn btn-primary disabled">Latest Tenders</button>
+  <div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>Tender Title</th>
+      <th>Reference No</th>
+      <th>Closing Date</th>
+      <th>Bid Opening Date</th>
+    </tr>
+    <tr>
+      <td>1. LICENSE FOR OPERATING TEA / COFFEE / COLD DRINKS SHOP AT DEPARTURE LOUNGE OF SILCHAR AIRPORT.</td>
+      <td>AAI/RJY/ENGG(E)/NIT-2/2018-19</td>
+      <td>07-May-2018 06:00 PM</td>
+      <td>08-May-2018 03:00 PM</td>
+    <tr>
+      <td>2. Job Contract for Providing Bird and Animal Scaring and allied Services in the operational area at Dibrugarh Airport</td>
+      <td>AAI/RJY/ENGG(E)/NIT-2/2018-19</td>
+      <td>07-May-2018 01:00 PM</td>
+      <td>08-May-2018 01:00 PM</td>
+    </tr>
+    <tr>
+      <td>3. LICENSE FOR OPERATING FRUIT JUICE SHOP AT DEPARTURE LOUNGE OF SILCHAR AIRPORT.</td>
+      <td>AAI/TPT/AGMEC II/CAP/W 1/2018 19</td>
+      <td>07-May-2018 06:00 PM</td>
+      <td>15-May-2018 06:00 PM</td>
+    </tr>
+  </table>
+</div>
+
+Make the list autoscrolling using <a href="https://stackoverflow.com/questions/36873753/make-table-auto-scroll-vertically-via-html-css">this</a>.
+
+<br><hr>
+<button type="button" class="btn btn-primary disabled">Latest Corrigendums</button>
+  <div style="overflow-x:auto;">
+  <table>
+    <tr>
+      <th>Tender Title</th>
+      <th>Reference No</th>
+      <th>Closing Date</th>
+      <th>Bid Opening Date</th>
+    </tr>
+    <tr>
+      <td>1. LICENSE FOR OPERATING TEA / COFFEE / COLD DRINKS SHOP AT DEPARTURE LOUNGE OF SILCHAR AIRPORT.</td>
+      <td>AAI/RJY/ENGG(E)/NIT-2/2018-19</td>
+      <td>07-May-2018 06:00 PM</td>
+      <td>08-May-2018 03:00 PM</td>
+    <tr>
+      <td>2. Job Contract for Providing Bird and Animal Scaring and allied Services in the operational area at Dibrugarh Airport</td>
+      <td>AAI/RJY/ENGG(E)/NIT-2/2018-19</td>
+      <td>07-May-2018 01:00 PM</td>
+      <td>08-May-2018 01:00 PM</td>
+    </tr>
+    <tr>
+      <td>3. LICENSE FOR OPERATING FRUIT JUICE SHOP AT DEPARTURE LOUNGE OF SILCHAR AIRPORT.</td>
+      <td>AAI/TPT/AGMEC II/CAP/W 1/2018 19</td>
+      <td>07-May-2018 06:00 PM</td>
+      <td>15-May-2018 06:00 PM</td>
+    </tr>
+  </table>
+</div>
+
+<br><hr>
+
 
     </div>
   </main>
@@ -195,16 +269,6 @@ font-family: 'Roboto';font-size: 15px;
     <!--/.Call to action-->
 
     <hr class="my-4">
-
-    <!-- Social icons -->
-    <div class="pb-4">
-
-      <a href="mailto:teamsatoshibsic.com" target="_top">
-        <i class="fa fa-dribbble mr-3"></i>
-      </a>
-
-    </div>
-    <!-- Social icons -->
 
     <!--Copyright-->
     <div class="footer-copyright py-3">

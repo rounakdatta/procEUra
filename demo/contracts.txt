@@ -1,3 +1,0 @@
-well 12000 05/31/2018 06/04/2018 7 pfhostel
-tunnel 40000 05/05/2018 05/31/2018 26 techpark
-AI_Lab 600000 07/25/2018 07/31/2018 30 universityblding

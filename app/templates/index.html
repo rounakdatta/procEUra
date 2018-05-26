@@ -231,11 +231,11 @@ font-family: 'Roboto';font-size: 15px;
                 <a class="nav-link" href="{{ url_for('whitepaper') }}"><strong>Whitepaper</strong></a>
               </li>
 
-
             </ul>
 
             <!-- Right -->
             <ul class="navbar-nav nav-flex-icons">
+
               {% if session['logged_in'] or session['dealer_logged_in'] %}
               <li class="nav-item">
                   <a href="{{ url_for('userpage') }}" class="nav-link border border-light rounded">
@@ -293,6 +293,7 @@ font-family: 'Roboto';font-size: 15px;
 
                 <p class="mb-4 d-none d-md-block">
                   The Ethereum-powered procurement platform is built to <strong>keep the middlemen out</strong>, to make sure <strong>the best bidder finds the best dealer</strong>, ensure that <strong>public data is truly public</strong> and <strong>common citizen's money isn't fiddled with</strong>.
+                  We are on our mission to free <strong>Europe</strong> of the ocean of corruption in public procurements.
                 </p>
                 <br>
 
@@ -359,7 +360,6 @@ font-family: 'Roboto';font-size: 15px;
 
   </header>
 
-<iframe width="100%" height="100%" src="https://prezi.com/view/b1GAG9HHhNsNAeqaELU7/embed" webkitallowfullscreen="1" mozallowfullscreen="1" allowfullscreen="1"></iframe>
 
   <!--Main layout-->
   <main>
@@ -410,10 +410,12 @@ font-family: 'Roboto';font-size: 15px;
               Papers are kept secret to damage <strong>transparency</strong>
             </p>
 
+            <br>
+            <p>
+                Incidents such as the recent <strong>children deaths</strong><br> at BRD Hospital
+                in Gorakhpur highlight <br>endemic <strong>failure </strong> of procurement management
+            </p>
 
-            <a target="_blank" href="https://www.canva.com/design/DAC1D1KQfTc/oaPtw7XUENOTd31bMF3GXw/embed-responsive-item" class="btn btn-indigo btn-md">Statistics
-              <i class="fa fa-download ml-1"></i>
-            </a>
 
 
 
@@ -501,7 +503,7 @@ font-family: 'Roboto';font-size: 15px;
 
             <!--<p class="h5 text-center mb-4">Our system explained</p>-->
             <div class="embed-responsive embed-responsive-16by9">
-              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/55RoBoMfOVo" allowfullscreen></iframe>
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/gsy3hwn_c9c" allowfullscreen></iframe>
             </div>
 
             <br><br>
@@ -518,6 +520,8 @@ font-family: 'Roboto';font-size: 15px;
 
       <hr class="my-5">
 
+
+
 <div class="container">
   <div class="row">
     <div class="col-md-8 col-center m-auto">
@@ -527,31 +531,19 @@ font-family: 'Roboto';font-size: 15px;
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>
-          <li data-target="#myCarousel" data-slide-to="2"></li>
-          <li data-target="#myCarousel" data-slide-to="3"></li>
         </ol>
         <!-- Wrapper for carousel items -->
         <div class="carousel-inner">
           <div class="item carousel-item active">
 
-            <div class="img-box"><img src="http://www.patrickforsythe.com/images/avatar-large.jpg" class="img-fluid z-depth-1-half"></div>
-            <p class="testimonial">Lorem ipsum dolor sit amet, epicurei consequuntur conclusionemque id sed, in his natum summo accommodare.</p>
-            <p class="overview"><b>ABC</b>, XYZ</p>
+            <div class="img-box"><img src="{{ url_for('static', filename='./img/amitabh.jpg') }}" class="img-fluid z-depth-1-half"></div>
+            <p class="testimonial"><b>"This platform can revolutionise the current eprocurement systems. It is fast, open and transparent what else do we need. These guys really know what they are doing"</b></p>
+            <p class="overview"><b>Amitabh</b>, Senior Manager Administration and Procurement for IFFCO, a leading fertiliser cooperative</p>
           </div>
           <div class="item carousel-item">
-            <div class="img-box"><img src="http://www.patrickforsythe.com/images/avatar-large.jpg" class="img-fluid z-depth-1-half"></div>
-            <p class="testimonial">Lorem ipsum dolor sit amet, epicurei consequuntur conclusionemque id sed, in his natum summo accommodare.</p>
-            <p class="overview"><b>ABC</b>, XYZ</p>
-          </div>
-          <div class="item carousel-item">
-            <div class="img-box"><img src="http://www.patrickforsythe.com/images/avatar-large.jpg" class="img-fluid z-depth-1-half"></div>
-            <p class="testimonial">Lorem ipsum dolor sit amet, epicurei consequuntur conclusionemque id sed, in his natum summo accommodare.</p>
-            <p class="overview"><b>ABC</b>, XYZ</p>
-          </div>
-          <div class="item carousel-item">
-            <div class="img-box"><img src="http://www.patrickforsythe.com/images/avatar-large.jpg" class="img-fluid z-depth-1-half"></div>
-            <p class="testimonial">Lorem ipsum dolor sit amet, epicurei consequuntur conclusionemque id sed, in his natum summo accommodare.</p>
-            <p class="overview"><b>ABC</b>, XYZ</p>
+            <div class="img-box"><img src="{{ url_for('static', filename='./img/pbahuguna.jpg') }}" class="img-fluid z-depth-1-half"></div>
+            <p class="testimonial"><b>"The idea of decentralising the bid-evaluation process in their demo is what impressed me most. I think this will greatly reduce the rampant corruption."<br></b></p>
+            <p class="overview"><b>Pradeep Bahuguna</b>, Defense Procurement for the Indian Army<br><br></p>
           </div>
         </div>
         <!-- Carousel controls -->
@@ -1226,17 +1218,6 @@ font-family: 'Roboto';font-size: 15px;
     <!--/.Call to action-->
 
     <hr class="my-4">
-
-    <!-- Social icons -->
-    <div class="pb-4">
-
-
-      <a href="mailto:teamsatoshibsic.com" target="_top">
-        <i class="fa fa-dribbble mr-3"></i>
-      </a>
-
-    </div>
-    <!-- Social icons -->
 
     <!--Copyright-->
     <div class="footer-copyright py-3">

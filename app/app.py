@@ -4,8 +4,6 @@ import pyrebase
 
 app = Flask(__name__)
 
-root_dir = '/home/teamsatoshi/936a185caaa266bb9cbe981e9e05cb.github.io'
-
 config = {
   "apiKey": "AIzaSyDhyp_l-BjhR3WJq6AsOu64cFf96sOg4qw",
   "authDomain": "bsic-ff4c8.firebaseapp.com",
@@ -25,21 +23,10 @@ def index():
 
 @app.route('/demo', methods=['GET', 'POST'])
 def demo():
-	if request.method == 'POST' and 'cname' in request.form and 'camount' in request.form and 'copen' in request.form and 'cclose' in request.form and 'cduration' in request.form and 'clocation' in request.form:
-		with open(root_dir + "/demo/contracts.txt", "a") as demo:
-			demo.write(request.form['cname'] + " " + request.form['camount'] + " " + request.form['copen'] + " " + request.form['cclose'] + " " + request.form['cduration'] + " " + request.form['clocation'] + "\n")
-			newfile = open(root_dir + "/tenders/" + request.form['cname'] + ".txt", "w+")
-			newfile.close()
-
-	all_contracts = []
-	with open(root_dir + "/demo/contracts.txt", "r") as reader:
-		for line in reader:
-			all_contracts.append(line.split()[:6])
-
 	if session.get('logged_in') or session.get('dealer_logged_in'):
-		return render_template('demo.html', all_contracts=all_contracts, user=session['user'])
+		return render_template('demo.html', user=session['user'])
 	else:
-		return render_template('demo.html', all_contracts=all_contracts)
+		return render_template('demo.html')
 
 @app.route('/tender/<tender_title>', methods=['GET', 'POST'])
 def this_tender(tender_title):
@@ -126,7 +113,7 @@ def addTender():
 		db.child("tenders").child("all_tenders")
 		data = {"org" : request.form['org'], "tenderref" : request.form['tenderref'], "tenderid" : request.form['tenderid'], "tenderstatus" : request.form['tenderstatus'], "tendercat" : request.form['tendercat'], "techdetails" : request.form['techdetails'], "financedetails" : request.form['financedetails'], "bidopen" : request.form['bidopen'], "bidclose" : request.form['bidclose'], "tenderval" : request.form['tenderval'], "paymode" : request.form['paymode'], "payto" : request.form['payto'], "gentech" : request.form['gentech'], "formcont" : request.form['formcont'], "titlec" : request.form['titlec'], "workd" : request.form['workd'], "preq" : request.form['preq'], "meetadd" : request.form['meetadd'], "meetdate" : request.form['meetdate'], "bidop" : request.form['bidop'], "pubd" : request.form['pubd'], "downds" : request.form['downds'], "downde" : request.form['downde'], "clars" : request.form['clars'], "clare" : request.form['clare'], "iem" : request.form['iem'], "tfe" : request.form['tfe'], "pername" : request.form['pername'], "pera" : request.form['pera'], "mulca" : request.form['mulca']}
 		db.push(data)
-		return render_template('index.html')
+		return render_template('index.html', username=session['user'])
 
 	if session.get('dealer_logged_in'):
 		return render_template('addTender.html', username=session['user'])
@@ -194,7 +181,7 @@ def register():
 		dat = {session['user'] : "failed"}
 		db.push(dat)
 
-		return render_template('registerdetails.html')
+		return render_template('registerdetails.html', user=session['user'])
 	else:
 		flash('wrong password!')
 
@@ -202,7 +189,9 @@ def register():
 		db.child("accounts").child("supplier")
 		dat = {request.form['dealerusername'] : request.form['dealerpassword']}
 		db.push(dat)
-		return render_template('registerdetails.html')
+		session['user'] = request.form['dealerusername']
+		session['dealer_logged_in'] = True
+		return render_template('index.html', user=session['user'])
 	else:
 		flash('wrong password!')
 
@@ -225,19 +214,11 @@ def registerdetails():
 		print(thisone)
 		return render_template('index.html', user=session['user'])
 
-	return render_template('registerdetails.html')
+	return render_template('registerdetails.html', user=session['user'])
 
 @app.route('/tender', methods=['GET', 'POST'])
 def tender():
-
-	if request.method == 'POST' and 'bidamount' in request.form:
-		print(session['tender_title'] + "hello")
-
-		with open(root_dir + "/tenders/" + session['tender_title'] + ".txt", "a") as bidder:
-			bidder.write(session['user'] + "-" + request.form['bidamount'] + "\n")
-
-		session['bid_submitted'] = True
-		return render_template('index.html', user=session['user'])
+	return render_template("index.html", user=session['user'])
 
 @app.route('/developers', methods=['GET', 'POST'])
 def developers():
