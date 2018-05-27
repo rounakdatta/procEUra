@@ -36,7 +36,7 @@ Head over to [localhost:5000](http://localhost:5000).
 
 
 
-[![Metamask](https://i0.wp.com/cdng.c3dt.com/icon/3265891-com.wallet.metamask.png)](https://metamask.io/)       [![Web3.JS](https://image.ibb.co/f8U7Lo/web3.jpg)](https://github.com/ethereum/web3.js/)   [![Solidity](https://image.ibb.co/c8xit8/sol_jpeg.jpg)](http://solidity.readthedocs.io/en/v0.4.21/)   [![Truffle](https://image.ibb.co/f3jDt8/truffle.png)](http://truffleframework.com/) [![Python](https://i0.wp.com/cdnb.c3dt.com/icon/744996-com.study.python.png)](https://www.python.org/)
+[![Metamask](https://i0.wp.com/cdng.c3dt.com/icon/3265891-com.wallet.metamask.png)](https://metamask.io/)       [![Web3.JS](https://image.ibb.co/f8U7Lo/web3.jpg)](https://github.com/ethereum/web3.js/)   [![Solidity](https://image.ibb.co/c8xit8/sol_jpeg.jpg)](http://solidity.readthedocs.io/en/v0.4.21/)   [![Truffle](https://image.ibb.co/f3jDt8/truffle.png)](http://truffleframework.com/) [![Python](https://i0.wp.com/cdnb.c3dt.com/icon/744996-com.study.python.png)](https://www.python.org/)[![Oraclize](https://secure.meetupstatic.com/photos/event/4/9/2/2/600_465198722.jpeg)](http://www.oraclize.it/)
 
 
 [![HitCount](http://hits.dwyl.io/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io.svg)](http://hits.dwyl.io/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io)
