@@ -38,5 +38,3 @@ Head over to [localhost:5000](http://localhost:5000).
 
 
 [![HitCount](http://hits.dwyl.io/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io.svg)](http://hits.dwyl.io/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io)
-
-Find the GitHub repo <a href="https://github.com/936a185caaa266bb9cbe981e9e05cb/936a185caaa266bb9cbe981e9e05cb.github.io">here</a>.
